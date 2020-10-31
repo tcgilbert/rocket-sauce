@@ -16,10 +16,28 @@ let gameSpeed = 2; // to create parallax effect
 ctx.fillStyle = 'white';
 
 
+//background img
+const background = new Image();
+console.log(background);
+background.src = 'img/stage-1.jpg';
+const BG = {
+    x: 0,
+    y1: 0,
+    y2: canvas.height,
+    width: canvas.width,
+    height: canvas.height
+}
+
+function handleBackground(){
+    if (BG.y1 >= BG.height) BG.y1 = canvas.height;
+    // else BG.y1 += .5;
+    ctx.drawImage(background, BG.x, BG.y1, BG.width, BG.height);
+}
 
 //game loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    handleBackground();
     rocket.update();
     rocket.draw();
     //create animation loop
@@ -51,4 +69,3 @@ window.addEventListener('keydown', function(e){
 window.addEventListener('keyup', function(e){
     if (e.code === 'ArrowRight') rightPressed = false;
 });
-

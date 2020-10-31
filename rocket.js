@@ -22,7 +22,7 @@ class Rocket {
             this.vy = 0;
         } else {
             this.vy += this.weight;
-            
+            // this.vy *= .5;
             this.y += this.vy;
         }
         //check canvas left
