@@ -1,0 +1,3 @@
+GAMEPLAY
+- space bar to scroll through canvas
+- arrows to move around
