@@ -22,7 +22,7 @@ class Rocket {
             this.vy = 0;
         } else {
             this.vy += this.weight;
-            this.vy * .12;
+            
             this.y += this.vy;
         }
         //check canvas left
@@ -50,7 +50,7 @@ class Rocket {
         }
         if (!rightPressed && this.vxr > 0) {
             this.vxr -= 2;
-            if (this.vxl < 0) this.vxl = 0;
+            if (this.vxr < 0) this.vxr = 0;
         }
 
     }
@@ -59,6 +59,7 @@ class Rocket {
         ctx.fillStyle = 'red';
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
+
     boost() {
         console.log('boost called');
         this.vy -= 2;
