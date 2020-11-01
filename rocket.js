@@ -53,8 +53,14 @@ class Rocket {
             this.vxr -= 2;
             if (this.vxr < 0) this.vxr = 0;
         }
-        if (!upPressed && bgScroll > 0) {
-            bgScroll--
+        if (!upPressed && bgScroll > 15) {
+            if (bgScroll > 100) {
+                bgScroll--
+            } else if (bgScroll > 50) {
+                bgScroll -= .5;
+            } else {
+                bgScroll -= .25;
+            }
             console.log(`scroll rate: ${bgScroll}`);
         }
 
@@ -66,7 +72,7 @@ class Rocket {
     }
 
     boost() {
-        if(bgScroll < 200) {
+        if(bgScroll < 150) {
             bgScroll++;
         }
         this.vy -= 2;
