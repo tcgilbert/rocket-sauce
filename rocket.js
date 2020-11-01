@@ -11,9 +11,10 @@ class Rocket {
         this.weight = 1;
     }
     update() {
-        //check canvas TOP
-        if (this.y < 0 + this.height) {
-            this.y = 0 + this.height;
+        angle += .06;
+        let osc = Math.sin(angle) * 20;
+        if (this.y < 500 + this.height + osc) {
+            this.y = 500 + this.height + osc;
             this.vy = 0;
         }
         //check canvas BOTTOM, and gravity
