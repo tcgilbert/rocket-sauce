@@ -22,7 +22,7 @@ class Rocket {
             this.vy = 0;
         } else {
             this.vy += this.weight;
-            // this.vy *= .5;
+            this.vy *= .5;
             this.y += this.vy;
         }
         //check canvas left
@@ -61,18 +61,17 @@ class Rocket {
     }
 
     boost() {
-        console.log('boost called');
+        bgScroll++;
         this.vy -= 2;
+        console.log('bg scroll');
     }
 
     moveLeft() {
-        console.log('left called');
         this.vxr = 0;
         this.vxl -= 1;
         this.x += this.vxl;
     }
     moveRight() {
-        console.log('right called');
         this.vxl = 0;
         this.vxr += 1
         this.x += this.vxr;

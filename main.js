@@ -9,17 +9,21 @@ let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
 let spacePressed = false;
-let angle = 0; // tilt rocket when not boosting MAY NOT USE
+let bgScroll = 0;
+let angle = 0; // wobble add to rocket
 let frame = 0; // add any periodic triggers to the game
 let elevation = 0;
 let gameSpeed = 2; // to create parallax effect
 ctx.fillStyle = 'white';
 
 
-//background img
-const background = new Image();
-console.log(background);
-background.src = 'img/stage-1.jpg';
+//launchStage imgs
+
+const launchStage = new Image();
+const stage2 = new Image();
+launchStage.src = 'img/launch-stage.jpg';
+stage2.src = 'img/staage-2.jpg'
+
 const BG = {
     x: 0,
     y1: 0,
@@ -28,16 +32,16 @@ const BG = {
     height: canvas.height
 }
 
-function handleBackground(){
-    if (BG.y1 >= BG.height) BG.y1 = canvas.height;
-    // else BG.y1 += .5;
-    ctx.drawImage(background, BG.x, BG.y1, BG.width, BG.height);
+function handlelaunchStage(){
+    BG.y1 += (bgScroll * .12);
+    ctx.drawImage(launchStage, BG.x, BG.y1, BG.width, BG.height);
+    ctx.drawImage(stage2, BG.x, BG.y1 - BG.height, BG.width, BG.height)
 }
 
 //game loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    handleBackground();
+    handlelaunchStage();
     rocket.update();
     rocket.draw();
     //create animation loop
