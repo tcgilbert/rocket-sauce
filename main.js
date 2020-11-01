@@ -17,22 +17,25 @@ let gameSpeed = 2; // to create parallax effect
 let yPos = 0; // Used to set the first two backgrounds
 let yPosR = 0; // Used to set the repeating background
 
-
 //launchStage imgs
 const launchStage = new Image();
 const stage2 = new Image();
 const stars = new Image();
+const green = new Image();
+const blue = new Image();
 stars.src = "img/repeat.jpg";
 launchStage.src = "img/launch-stage.jpg";
 stage2.src = "img/stage-2.jpg";
+green.src = "img/green.jpg";
+blue.src = "img/blue.jpg";
 
 const repeatBG = {
-    x: 0,
-    y1: 0,
-    y2: canvas.height,
-    width: canvas.width,
-    height: canvas.height,
-}
+  x: 0,
+  y1: 0,
+  y2: canvas.height,
+  width: canvas.width,
+  height: canvas.height,
+};
 
 function handleBackground() {
   if (yPosR === 0) {
@@ -42,9 +45,16 @@ function handleBackground() {
     ctx.drawImage(stars, 0, yPos - 1600, canvas.width, canvas.height);
   }
   if (yPos > 1600) {
-    repeatBG.y1 += bgScroll * 0.2;
+    
+    if (repeatBG.y1 >= repeatBG.height) repeatBG.y1 = -repeatBG.height;
+    else repeatBG.y1 += bgScroll * 0.2;
+    if (repeatBG.y2 >= repeatBG.height) repeatBG.y2 = -repeatBG.height;
+    else repeatBG.y2 += bgScroll * 0.2;
     ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
-    ctx.drawImage(stars, 0, repeatBG.y1- 800, canvas.width, canvas.height);
+    ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
+
+    // ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
+    // ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
   }
 }
 
