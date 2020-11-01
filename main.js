@@ -1,6 +1,6 @@
 //calibrate canvas
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 canvas.height = 800;
 canvas.width = 700;
 
@@ -14,62 +14,72 @@ let angle = 0; // wobble add to rocket
 let frame = 0; // add any periodic triggers to the game
 let elevation = 0;
 let gameSpeed = 2; // to create parallax effect
-ctx.fillStyle = 'white';
+let yPos = 0; // Used to set the first two backgrounds
+let yPosR = 0; // Used to set the repeating background
 
 
 //launchStage imgs
-
 const launchStage = new Image();
 const stage2 = new Image();
-launchStage.src = 'img/launch-stage.jpg';
-stage2.src = 'img/staage-2.jpg'
+const stars = new Image();
+stars.src = "img/repeat.jpg";
+launchStage.src = "img/launch-stage.jpg";
+stage2.src = "img/stage-2.jpg";
 
-const BG = {
+const repeatBG = {
     x: 0,
     y1: 0,
     y2: canvas.height,
     width: canvas.width,
-    height: canvas.height
+    height: canvas.height,
 }
 
-function handlelaunchStage(){
-    BG.y1 += (bgScroll * .12);
-    ctx.drawImage(launchStage, BG.x, BG.y1, BG.width, BG.height);
-    ctx.drawImage(stage2, BG.x, BG.y1 - BG.height, BG.width, BG.height)
+function handleBackground() {
+  if (yPosR === 0) {
+    yPos += bgScroll * 0.2;
+    ctx.drawImage(launchStage, 0, yPos, canvas.width, canvas.height);
+    ctx.drawImage(stage2, 0, yPos - 800, canvas.width, canvas.height);
+    ctx.drawImage(stars, 0, yPos - 1600, canvas.width, canvas.height);
+  }
+  if (yPos > 1600) {
+    repeatBG.y1 += bgScroll * 0.2;
+    ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
+    ctx.drawImage(stars, 0, repeatBG.y1- 800, canvas.width, canvas.height);
+  }
 }
 
 //game loop
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    handlelaunchStage();
-    rocket.update();
-    rocket.draw();
-    //create animation loop
-    requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  handleBackground();
+  rocket.update();
+  rocket.draw();
+  //create animation loop
+  requestAnimationFrame(animate);
 }
 animate();
 
 //user input event listeners
-window.addEventListener('keydown', function(e){
-    if (e.code === 'ArrowUp') upPressed = true;
+window.addEventListener("keydown", function (e) {
+  if (e.code === "ArrowUp") upPressed = true;
 });
 
-window.addEventListener('keyup', function(e){
-    if (e.code === 'ArrowUp') upPressed = false;
+window.addEventListener("keyup", function (e) {
+  if (e.code === "ArrowUp") upPressed = false;
 });
 
-window.addEventListener('keydown', function(e){
-    if (e.code === 'ArrowLeft') leftPressed = true;
+window.addEventListener("keydown", function (e) {
+  if (e.code === "ArrowLeft") leftPressed = true;
 });
 
-window.addEventListener('keyup', function(e){
-    if (e.code === 'ArrowLeft') leftPressed = false;
+window.addEventListener("keyup", function (e) {
+  if (e.code === "ArrowLeft") leftPressed = false;
 });
 
-window.addEventListener('keydown', function(e){
-    if (e.code === 'ArrowRight') rightPressed = true;
+window.addEventListener("keydown", function (e) {
+  if (e.code === "ArrowRight") rightPressed = true;
 });
 
-window.addEventListener('keyup', function(e){
-    if (e.code === 'ArrowRight') rightPressed = false;
+window.addEventListener("keyup", function (e) {
+  if (e.code === "ArrowRight") rightPressed = false;
 });
