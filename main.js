@@ -1,3 +1,6 @@
+//DOM Elements
+const startButton = document.getElementById('start');
+
 //calibrate canvas
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -59,6 +62,12 @@ function handleBackground() {
 }
 
 //game loop
+
+
+//TO DO - get initial display before game loop starts
+rocket.update();
+rocket.draw();
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   handleBackground();
@@ -70,6 +79,8 @@ function animate() {
 animate();
 
 //user input event listeners
+// startButton.addEventListener('click', animate);
+
 window.addEventListener("keydown", function (e) {
   if (e.code === "ArrowUp") upPressed = true;
 });

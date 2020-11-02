@@ -1,13 +1,17 @@
+const wizardRocket = new Image();
+wizardRocket.src = 'img/editable-wizard.png';
 
 class Rocket {
     constructor() {
-        this.x = 295;
-        this.y = 880;
+        this.x = 275;
+        this.y = 620;
         this.vy = 0;
         this.vxr = 0;
         this.vxl = 0;
         this.width = 100;
         this.height = 100;
+        this.wizWidth = this.width + 50;
+        this.wizHeight = this.height + 50;
         this.weight = 1;
     }
     update() {
@@ -28,8 +32,8 @@ class Rocket {
             this.y += this.vy;
         }
         //check canvas left
-        if (this.x < 0) {
-            this.x = 0;
+        if (this.x < 20) {
+            this.x = 20;
             this.vxl = 0;
         } else {
             this.x += (this.vxl * .5);
@@ -62,7 +66,7 @@ class Rocket {
             } else {
                 bgScroll -= .25;
             }
-            console.log(`scroll rate: ${bgScroll}`);
+            // console.log(`scroll rate: ${bgScroll}`);
         }
 
     }
@@ -70,6 +74,7 @@ class Rocket {
     draw() {
         ctx.fillStyle = 'red';
         ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(wizardRocket, this.x - 35, this.y -20, this.wizWidth, this.wizHeight);
     }
 
     boost() {
@@ -77,7 +82,7 @@ class Rocket {
             bgScroll++;
         }
         this.vy -= 2;
-        console.log(`scroll rate: ${bgScroll}`);
+        // console.log(`scroll rate: ${bgScroll}`);
     }
 
     moveLeft() {
