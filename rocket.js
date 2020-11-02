@@ -2,19 +2,19 @@
 const wizardRocket = new Image();
 const fuego1 = new Image();
 fuego1.src = 'img/fire.png'
-wizardRocket.src = 'img/editable-wizard.png';
+wizardRocket.src = 'img/blue-wizardUpdated.png';
 
 class Rocket {
     constructor() {
-        this.x = 275;
+        this.x = 410;
         this.y = 620;
         this.vy = 0;
         this.vxr = 0;
         this.vxl = 0;
-        this.width = 100;
-        this.height = 100;
-        this.fireWidth = this.width;
-        this.fireHeight = this.height;
+        this.width = 120;
+        this.height = 120;
+        this.fireWidth = this.width -20;
+        this.fireHeight = this.height - 40;
         this.weight = 1;
     }
     update() {
@@ -79,7 +79,7 @@ class Rocket {
         // hit box reference
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.width + 50, this.height + 50);
-        if (upPressed) ctx.drawImage(fuego1, this.x + 20, this.y + 130, this.fireWidth, this.fireHeight);
+        if (upPressed) ctx.drawImage(fuego1, this.x + 35, this.y + 136, this.fireWidth, this.fireHeight);
     }
 
     boost() {

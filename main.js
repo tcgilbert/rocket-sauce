@@ -5,7 +5,7 @@ const startButton = document.getElementById('start');
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 canvas.height = 800;
-canvas.width = 700;
+canvas.width = 1000;
 
 //variables
 let upPressed = false;
