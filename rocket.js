@@ -1,25 +1,26 @@
 
 class Rocket {
     constructor() {
-        this.x = 330;
+        this.x = 295;
         this.y = 880;
         this.vy = 0;
         this.vxr = 0;
         this.vxl = 0;
-        this.width = 20;
-        this.height = 20;
+        this.width = 100;
+        this.height = 100;
         this.weight = 1;
     }
     update() {
         angle += .06;
         let osc = Math.sin(angle) * 20;
-        if (this.y < 500 + this.height + osc) {
-            this.y = 500 + this.height + osc;
+        //check canvas top
+        if (this.y < 400 + this.height + osc) {
+            this.y = 400 + this.height + osc;
             this.vy = 0;
         }
         //check canvas BOTTOM, and gravity
-        if (this.y > canvas.height - (this.height * 3)) {
-            this.y = canvas.height - (this.height * 3);
+        if (this.y > canvas.height - (this.height + 50)) {
+            this.y = canvas.height - (this.height + 50);
             this.vy = 0;
         } else {
             this.vy += this.weight;
