@@ -59,7 +59,7 @@ class Rocket {
             if (this.vxr < 0) this.vxr = 0;
         }
         if (!upPressed && bgScroll > 15) {
-            if (bgScroll > 100) {
+            if (bgScroll > 75) {
                 bgScroll--
             } else if (bgScroll > 50) {
                 bgScroll -= .5;
@@ -73,12 +73,12 @@ class Rocket {
 
     draw() {
         ctx.fillStyle = 'red';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(wizardRocket, this.x - 35, this.y -20, this.wizWidth, this.wizHeight);
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.wizWidth, this.wizHeight);
     }
 
     boost() {
-        if(bgScroll < 150) {
+        if(bgScroll < 100) {
             bgScroll++;
         }
         this.vy -= 2;

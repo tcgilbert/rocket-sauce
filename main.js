@@ -73,6 +73,7 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
+  firstAsteroid.draw();
   //create animation loop
   requestAnimationFrame(animate);
 }
