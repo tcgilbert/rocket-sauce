@@ -67,11 +67,11 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  handleAsteroids();
+  // handleAsteroids();
   requestAnimationFrame(animate);
   frame++;
 }
-// animate();
+animate();
 
 //user input event listeners
 // startButton.addEventListener('click', animate);

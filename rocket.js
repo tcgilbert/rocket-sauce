@@ -1,4 +1,7 @@
+//image declarations
 const wizardRocket = new Image();
+const fuego1 = new Image();
+fuego1.src = 'img/fire.png'
 wizardRocket.src = 'img/editable-wizard.png';
 
 class Rocket {
@@ -10,8 +13,8 @@ class Rocket {
         this.vxl = 0;
         this.width = 100;
         this.height = 100;
-        this.wizWidth = this.width + 50;
-        this.wizHeight = this.height + 50;
+        this.fireWidth = this.width;
+        this.fireHeight = this.height;
         this.weight = 1;
     }
     update() {
@@ -75,7 +78,8 @@ class Rocket {
         ctx.fillStyle = 'red';
         // hit box reference
         // ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.wizWidth, this.wizHeight);
+        ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.width + 50, this.height + 50);
+        if (upPressed) ctx.drawImage(fuego1, this.x + 20, this.y + 130, this.fireWidth, this.fireHeight);
     }
 
     boost() {
