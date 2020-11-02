@@ -2,7 +2,7 @@
 const wizardRocket = new Image();
 const fuego1 = new Image();
 fuego1.src = 'img/fire.png'
-wizardRocket.src = 'img/blue-wizardUpdated.png';
+wizardRocket.src = 'img/wizard.png';
 
 class Rocket {
     constructor() {
