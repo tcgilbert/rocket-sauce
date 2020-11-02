@@ -18,8 +18,8 @@ class Rocket {
         angle += .06;
         let osc = Math.sin(angle) * 20;
         //check canvas top
-        if (this.y < 400 + this.height + osc) {
-            this.y = 400 + this.height + osc;
+        if (this.y < 450 + this.height + osc) {
+            this.y = 450 + this.height + osc;
             this.vy = 0;
         }
         //check canvas BOTTOM, and gravity
@@ -73,6 +73,7 @@ class Rocket {
 
     draw() {
         ctx.fillStyle = 'red';
+        // hit box reference
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.wizWidth, this.wizHeight);
     }

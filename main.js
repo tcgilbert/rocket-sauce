@@ -24,13 +24,10 @@ let yPosR = 0; // Used to set the repeating background
 const launchStage = new Image();
 const stage2 = new Image();
 const stars = new Image();
-const green = new Image();
-const blue = new Image();
 stars.src = "img/repeat.jpg";
 launchStage.src = "img/launch-stage.jpg";
 stage2.src = "img/stage-2.jpg";
-green.src = "img/green.jpg";
-blue.src = "img/blue.jpg";
+
 
 const repeatBG = {
   x: 0,
@@ -55,9 +52,6 @@ function handleBackground() {
     else repeatBG.y2 += bgScroll * 0.2;
     ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
     ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
-
-    // ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
-    // ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
   }
 }
 
@@ -73,11 +67,11 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  firstAsteroid.draw();
-  //create animation loop
+  handleAsteroids();
   requestAnimationFrame(animate);
+  frame++;
 }
-animate();
+// animate();
 
 //user input event listeners
 // startButton.addEventListener('click', animate);
