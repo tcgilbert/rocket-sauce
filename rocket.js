@@ -3,6 +3,8 @@ const wizardRocket = new Image();
 const fuego1 = new Image();
 fuego1.src = 'img/fire.png'
 wizardRocket.src = 'img/wizard.png';
+//variables
+let lrVelocity = .1;
 
 class Rocket {
     constructor() {
@@ -62,6 +64,7 @@ class Rocket {
             if (this.vxr < 0) this.vxr = 0;
         }
         if (!upPressed && bgScroll > 15) {
+            lrVelocity = .1;
             if (bgScroll > 75) {
                 bgScroll--
             } else if (bgScroll > 50) {
@@ -69,6 +72,7 @@ class Rocket {
             } else {
                 bgScroll -= .25;
             }
+            if (bgScroll < 15) return;
             // console.log(`scroll rate: ${bgScroll}`);
         }
 
@@ -86,6 +90,7 @@ class Rocket {
         if(bgScroll < 100) {
             bgScroll++;
         }
+        lrVelocity = 1;
         elevation++;
         this.vy -= 2;
         // console.log(`scroll rate: ${bgScroll}`);
@@ -93,12 +98,12 @@ class Rocket {
 
     moveLeft() {
         this.vxr = 0;
-        this.vxl -= 1;
+        this.vxl -= lrVelocity;
         this.x += this.vxl;
     }
     moveRight() {
         this.vxl = 0;
-        this.vxr += 1
+        this.vxr += lrVelocity
         this.x += this.vxr;
     }
  

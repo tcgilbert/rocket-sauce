@@ -70,7 +70,7 @@ function animate() {
   handleAsteroids();
   requestAnimationFrame(animate);
   if(elevation > 20) frame++;
-  elevationDisplayed.innerText = elevation;
+  elevationDisplayed.innerText = (elevation * 3);
 }
 animate();
 
