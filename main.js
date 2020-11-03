@@ -1,6 +1,6 @@
 //DOM Elements
 const startButton = document.getElementById('start');
-
+const elevationDisplayed = document.getElementById('elevation');
 //calibrate canvas
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -67,9 +67,10 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  // handleAsteroids();
+  handleAsteroids();
   requestAnimationFrame(animate);
-  frame++;
+  if(elevation > 20) frame++;
+  elevationDisplayed.innerText = elevation;
 }
 animate();
 

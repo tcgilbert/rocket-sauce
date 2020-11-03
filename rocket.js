@@ -86,6 +86,7 @@ class Rocket {
         if(bgScroll < 100) {
             bgScroll++;
         }
+        elevation++;
         this.vy -= 2;
         // console.log(`scroll rate: ${bgScroll}`);
     }
