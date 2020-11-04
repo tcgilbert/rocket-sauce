@@ -63,17 +63,4 @@ function handleAsteroids() {
   }
 }
 
-function randomStartPos() {
-  let ranNum = Math.random();
-  if (ranNum < 0.5) {
-    let leftStart;
-    leftStart = Math.floor(Math.random() * 350);
-    console.log(`left: ${leftStart}`);
-    return leftStart;
-  } else {
-    let rightStart;
-    rightStart = Math.floor(Math.random() * 350) + 330;
-    console.log(`right: ${rightStart}`);
-    return rightStart;
-  }
-}
+

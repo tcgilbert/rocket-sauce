@@ -72,19 +72,33 @@ function colConditions(array) {
   }
 }
 
+function randomStartPos() {
+  let ranNum = Math.random();
+  if (ranNum < 0.5) {
+    let leftStart;
+    leftStart = Math.floor(Math.random() * 350);
+    return leftStart;
+  } else {
+    let rightStart;
+    rightStart = Math.floor(Math.random() * 350) + 330;
+    return rightStart;
+  }
+}
+
 //game loop
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   handleBackground();
   rocket.update();
   rocket.draw();
+  handleFuel();
   handleAsteroids();
   collisionDetection();
   requestAnimationFrame(animate);
   if (elevation > 20) frame++;
   elevationDisplayed.innerText = elevation * 3;
 }
-animate();
+
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
@@ -109,4 +123,8 @@ window.addEventListener("keydown", function (e) {
 
 window.addEventListener("keyup", function (e) {
   if (e.code === "ArrowRight") rightPressed = false;
+});
+
+window.addEventListener("keyup", function (e) {
+  if (e.code === "Space") animate();
 });
