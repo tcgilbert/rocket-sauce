@@ -1,6 +1,6 @@
 //DOM Elements
-const startButton = document.getElementById('start');
-const elevationDisplayed = document.getElementById('elevation');
+const startButton = document.getElementById("start");
+const elevationDisplayed = document.getElementById("elevation");
 //calibrate canvas
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -28,7 +28,6 @@ stars.src = "img/repeat.jpg";
 launchStage.src = "img/launch-stage.jpg";
 stage2.src = "img/stage-2.jpg";
 
-
 const repeatBG = {
   x: 0,
   y1: 0,
@@ -37,6 +36,7 @@ const repeatBG = {
   height: canvas.height,
 };
 
+//functions
 function handleBackground() {
   if (yPosR === 0) {
     yPos += bgScroll * 0.2;
@@ -45,7 +45,6 @@ function handleBackground() {
     ctx.drawImage(stars, 0, yPos - 1600, canvas.width, canvas.height);
   }
   if (yPos > 1600) {
-    
     if (repeatBG.y1 >= repeatBG.height) repeatBG.y1 = -repeatBG.height;
     else repeatBG.y1 += bgScroll * 0.2;
     if (repeatBG.y2 >= repeatBG.height) repeatBG.y2 = -repeatBG.height;
@@ -56,14 +55,20 @@ function handleBackground() {
 }
 
 function collisionDetection() {
-    
-  for (let i = 0; i < asteroidArray.length; i++) {
-    if (asteroidArray[i].x  < (rocket.x + rocket.width)
-    && (asteroidArray[i].x + asteroidArray[i].width) > rocket.x 
-    && asteroidArray[i].y < (rocket.y + rocket.width) 
-    && (asteroidArray[i].y + asteroidArray[i].width) > rocket.y) {
-        console.log('collision');
-      }
+  if (colConditions(asteroidArray)) console.log("collsion");
+  if (colConditions(bigAsteroidArray)) console.log("big collsion");
+}
+
+function colConditions(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (
+      array[i].x < rocket.x + rocket.width &&
+      array[i].x + array[i].width > rocket.x &&
+      array[i].y < rocket.y + rocket.width &&
+      array[i].y + array[i].width > rocket.y
+    ) {
+      return true;
+    }
   }
 }
 
@@ -77,8 +82,8 @@ function animate() {
   handleAsteroids();
   collisionDetection();
   requestAnimationFrame(animate);
-  if(elevation > 20) frame++;
-  elevationDisplayed.innerText = (elevation * 3);
+  if (elevation > 20) frame++;
+  elevationDisplayed.innerText = elevation * 3;
 }
 // animate();
 
