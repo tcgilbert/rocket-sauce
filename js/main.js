@@ -73,7 +73,6 @@ function colConditions(array) {
 }
 
 //game loop
-
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   handleBackground();
@@ -85,12 +84,9 @@ function animate() {
   if (elevation > 20) frame++;
   elevationDisplayed.innerText = elevation * 3;
 }
-// animate();
+animate();
 
 //user input event listeners
-
-// startButton.addEventListener('click', animate);
-
 window.addEventListener("keydown", function (e) {
   if (e.code === "ArrowUp") upPressed = true;
 });

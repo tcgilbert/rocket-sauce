@@ -64,7 +64,7 @@ class Rocket {
             if (this.vxr < 0) this.vxr = 0;
         }
         if (!upPressed && bgScroll > 15) {
-            lrVelocity = .05;
+            lrVelocity = .2;
             if (bgScroll > 75) {
                 bgScroll--
             } else if (bgScroll > 50) {
