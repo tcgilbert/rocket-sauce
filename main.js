@@ -55,12 +55,19 @@ function handleBackground() {
   }
 }
 
+function collisionDetection() {
+    
+  for (let i = 0; i < asteroidArray.length; i++) {
+    if (asteroidArray[i].x  < (rocket.x + rocket.width)
+    && (asteroidArray[i].x + asteroidArray[i].width) > rocket.x 
+    && asteroidArray[i].y < (rocket.y + rocket.width) 
+    && (asteroidArray[i].y + asteroidArray[i].width) > rocket.y) {
+        console.log('collision');
+      }
+  }
+}
+
 //game loop
-
-
-//TO DO - get initial display before game loop starts
-rocket.update();
-rocket.draw();
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -68,13 +75,15 @@ function animate() {
   rocket.update();
   rocket.draw();
   handleAsteroids();
+  collisionDetection();
   requestAnimationFrame(animate);
   if(elevation > 20) frame++;
   elevationDisplayed.innerText = (elevation * 3);
 }
-animate();
+// animate();
 
 //user input event listeners
+
 // startButton.addEventListener('click', animate);
 
 window.addEventListener("keydown", function (e) {

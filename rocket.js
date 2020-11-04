@@ -64,7 +64,7 @@ class Rocket {
             if (this.vxr < 0) this.vxr = 0;
         }
         if (!upPressed && bgScroll > 15) {
-            lrVelocity = .1;
+            lrVelocity = .05;
             if (bgScroll > 75) {
                 bgScroll--
             } else if (bgScroll > 50) {
@@ -81,7 +81,7 @@ class Rocket {
     draw() {
         ctx.fillStyle = 'red';
         // hit box reference
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(wizardRocket, this.x - 35, this.y - 20, this.width + 50, this.height + 50);
         if (upPressed) ctx.drawImage(fuego1, this.x + 35, this.y + 136, this.fireWidth, this.fireHeight);
     }

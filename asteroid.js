@@ -2,6 +2,7 @@ const asteroidArray = [];
 const bigAsteroidArray = [];
 let smallAsteroidRate = 200;
 let bigAsteroidRate = 400; //change this in the handleAsteroids function
+
 class Asteroid {
   constructor() {
     this.x = randomStartPos();
