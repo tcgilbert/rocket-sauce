@@ -57,6 +57,7 @@ function handleBackground() {
 function collisionDetection() {
   if (colConditions(asteroidArray)) console.log("collsion");
   if (colConditions(bigAsteroidArray)) console.log("big collsion");
+  if (colConditions(fuelArray)) console.log("fuel added");
 }
 
 function colConditions(array) {
