@@ -87,6 +87,11 @@ function colConditions(array) {
         array[i].y < rocket.y + rocket.width &&
         array[i].y + array[i].width > rocket.y
       ) {
+        if (array[i].constructor.name === "Fuel") {
+          array.pop(array[i]);
+          fuel += 300;
+        };
+        
         return true;
       }
     }
