@@ -1,6 +1,7 @@
 //DOM Elements
-const startButton = document.getElementById("start");
+const fuelDisplayed = document.getElementById("fuel-level");
 const elevationDisplayed = document.getElementById("elevation");
+const livesDisplayed = document.getElementById("lives");
 //calibrate canvas
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -12,6 +13,13 @@ let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
 let spacePressed = false;
+let collision = false;
+let fuelCollected = false;
+let blink;
+let lives = 3;
+let fuelTimer = 100;
+let timer = 180;
+let fuel = 1000;
 let bgScroll = 0;
 let angle = 0; // wobble add to rocket
 let frame = 0; // add any periodic triggers to the game
@@ -55,22 +63,38 @@ function handleBackground() {
 }
 
 function collisionDetection() {
-  if (colConditions(asteroidArray)) console.log("collsion");
-  if (colConditions(bigAsteroidArray)) console.log("big collsion");
-  if (colConditions(fuelArray)) console.log("fuel added");
+  if (colConditions(asteroidArray)) {
+    collision = true;
+    blink = true;
+    lives--;
+    console.log("boom");
+  }
+  if (colConditions(bigAsteroidArray)) {
+    collision = true;
+    console.log("big collsion");
+  }
+  if (colConditions(fuelArray)) {
+    console.log("fuel added");
+  }
 }
 
 function colConditions(array) {
-  for (let i = 0; i < array.length; i++) {
-    if (
-      array[i].x < rocket.x + rocket.width &&
-      array[i].x + array[i].width > rocket.x &&
-      array[i].y < rocket.y + rocket.width &&
-      array[i].y + array[i].width > rocket.y
-    ) {
-      return true;
+  if (!collision) {
+    for (let i = 0; i < array.length; i++) {
+      if (
+        array[i].x < rocket.x + rocket.width &&
+        array[i].x + array[i].width > rocket.x &&
+        array[i].y < rocket.y + rocket.width &&
+        array[i].y + array[i].width > rocket.y
+      ) {
+        return true;
+      }
     }
   }
+}
+
+function blinker() {
+  blink = true;
 }
 
 function randomStartPos() {
@@ -98,8 +122,9 @@ function animate() {
   requestAnimationFrame(animate);
   if (elevation > 20) frame++;
   elevationDisplayed.innerText = elevation * 3;
+  fuelDisplayed.innerText = fuel;
+  livesDisplayed.innerText = lives;
 }
-
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
