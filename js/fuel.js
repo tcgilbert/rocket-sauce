@@ -17,6 +17,11 @@ class Fuel {
       
     }
     update() {
+      if (fuelCollected) fuelTimer--;
+      if (fuelTimer === 0) {
+        fuelTimer = 30;
+        fuelCollected = false;
+      }
       //speed of asteroid effected by boost rate
       this.y += 6;
       // this.randVel();

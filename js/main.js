@@ -17,7 +17,7 @@ let collision = false;
 let fuelCollected = false;
 let blink;
 let lives = 3;
-let fuelTimer = 100;
+let fuelTimer = 50;
 let timer = 140;
 let fuel = 1000;
 let bgScroll = 0;
@@ -63,22 +63,22 @@ function handleBackground() {
 }
 
 function collisionDetection() {
-  if (colConditions(asteroidArray)) {
-    collision = true;
+  if (asteroidHit(asteroidArray)) {
     blink = true;
     lives--;
-    console.log("boom");
+    // console.log("boom");
   }
-  if (colConditions(bigAsteroidArray)) {
-    collision = true;
-    console.log("big collsion");
+  if (asteroidHit(bigAsteroidArray)) {
+    lives--;
+    // console.log("big collsion");
   }
-  if (colConditions(fuelArray)) {
+  if (fuelHit(fuelArray)) {
     console.log("fuel added");
+    fuel += 200;
   }
 }
 
-function colConditions(array) {
+function asteroidHit(array) {
   if (!collision) {
     for (let i = 0; i < array.length; i++) {
       if (
@@ -86,18 +86,30 @@ function colConditions(array) {
         array[i].x + array[i].width > rocket.x &&
         array[i].y < rocket.y + rocket.width &&
         array[i].y + array[i].width > rocket.y
-      ) {
-        if (array[i].constructor.name === "Fuel") {
-          array.pop(array[i]);
-          fuel += 200;
-        };
-        
+        ) {
+          collision = true;
+          return true;
+        }
+      }
+    }
+  }
+  
+  function fuelHit(array) {
+    if (!fuelCollected && !collision) {
+      for (let i = 0; i < array.length; i++) {
+        if (
+          array[i].x < rocket.x + rocket.width &&
+          array[i].x + array[i].width > rocket.x &&
+          array[i].y < rocket.y + rocket.width &&
+          array[i].y + array[i].width > rocket.y
+          ) {
+            array.splice(i, 1);
+            fuelCollected = true;
         return true;
       }
     }
   }
 }
-
 
 function randomStartPos() {
   let ranNum = Math.random();
