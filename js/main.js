@@ -134,11 +134,17 @@ function playerInfo() {
   if (lives > 0) ctx.drawImage(heart, 800, 8, 50, 50);
   if (lives > 1) ctx.drawImage(heart, 750, 8, 50, 50);
   if (lives === 3) ctx.drawImage(heart, 700, 8, 50, 50);
-  //elevation bar
-  elevationBar();
+  //power up
+  powerBar();
+  //elevation display
+  ctx.save();
+  ctx.font = "40px VT323";
+  ctx.fillStyle = "cyan"
+  ctx.fillText(`SCORE: ${elevation - 1} PTS`, 10, 40);
+  ctx.restore();
 }
 
-function elevationBar() {
+function powerBar() {
   let color = "royalblue";
   let maxed = (elevation / 3) % 700;
   if (maxed === 0) {
