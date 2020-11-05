@@ -118,7 +118,9 @@ class Rocket {
     } else if (!blink) {
       ctx.fillStyle = "red";
       //   ctx.fillRect(this.x, this.y, this.width, this.height);
-      
+      ctx.save();
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = "white";
       ctx.drawImage(
         wizardRocket,
         this.x - 35,
@@ -126,7 +128,7 @@ class Rocket {
         this.width + 50,
         this.height + 50
       );
-      
+      ctx.restore();
       if (upPressed)
         ctx.drawImage(
           fuego1,
@@ -135,8 +137,8 @@ class Rocket {
           this.fireWidth,
           this.fireHeight
         );
-    }
   }
+}
 
   boost() {
     if (bgScroll < 100) {

@@ -33,6 +33,8 @@ const launchStage = new Image();
 const stage2 = new Image();
 const stars = new Image();
 const heart = new Image();
+const amp = new Image();
+amp.src = "img/amp.png";
 heart.src = "img/hearts.png";
 stars.src = "img/repeat.jpg";
 launchStage.src = "img/launch-stage.jpg";
@@ -138,14 +140,16 @@ function playerInfo() {
   powerBar();
   //elevation display
   ctx.save();
-  ctx.font = "40px VT323";
-  ctx.fillStyle = "cyan"
-  ctx.fillText(`SCORE: ${elevation - 1} PTS`, 10, 40);
+  ctx.font = "30px VT323";
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = "yellow"
+  ctx.fillStyle = "yellow"
+  ctx.fillText(`SCORE: ${elevation - 1} PTS`, 10, 35);
   ctx.restore();
 }
 
 function powerBar() {
-  let color = "royalblue";
+  
   let maxed = (elevation / 3) % 700;
   if (maxed === 0) {
     fuel += 200;
@@ -158,6 +162,13 @@ function powerBar() {
   ctx.fillStyle = "royalblue";
   ctx.fillRect(980, 780, 5, -(maxed));
   ctx.restore();
+
+  ctx.save()
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = 'white';
+  ctx.drawImage(amp, 890, 90, 80, 80);
+  ctx.restore();
+
 }
 
 function randomStartPos() {
