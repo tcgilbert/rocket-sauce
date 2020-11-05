@@ -17,7 +17,11 @@ class Asteroid {
   draw() {
     // ctx.fillStyle = "chartreuse";
     // ctx.fillRect(this.x, this.y, this.width, this.width);
+    ctx.save();
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "red";
     ctx.drawImage(asteroidSmall, this.x - 40, this.y - 20, this.width * 2, this.width * 2)
+    ctx.restore();
   }
   update() {
     //speed of asteroid effected by boost rate
@@ -40,7 +44,11 @@ class bigAsteroid {
   draw() {
     ctx.fillStyle = "cyan";
     // ctx.fillRect(this.x, this.y, this.width, this.width);
+    ctx.save();
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "red";
     ctx.drawImage(asteroidBig, this.x - 70, this.y - 70, this.width * 1.7, this.width * 1.7)
+    ctx.restore();
   }
   update() {
     this.y += 3;

@@ -32,6 +32,8 @@ let yPosR = 0; // Used to set the repeating background
 const launchStage = new Image();
 const stage2 = new Image();
 const stars = new Image();
+const heart = new Image();
+heart.src = "img/hearts.png";
 stars.src = "img/repeat.jpg";
 launchStage.src = "img/launch-stage.jpg";
 stage2.src = "img/stage-2.jpg";
@@ -111,7 +113,8 @@ function fuelHit(array) {
   }
 }
 
-function fuelText() {
+function playerInfo() {
+  //fuel meter
   ctx.save();
   ctx.font = "30px VT323";
   ctx.fillStyle = "red"
@@ -121,8 +124,12 @@ function fuelText() {
   ctx.fillStyle = "yellow";
   ctx.fillRect(870, 40, fuel / 10, 10);
   ctx.fillText(`FUEL: ${fuel}`, 867, 30);
-  
   ctx.restore();
+  //hearts
+  if (lives > 0) ctx.drawImage(heart, 800, 8, 50, 50);
+  if (lives > 1) ctx.drawImage(heart, 750, 8, 50, 50);
+  if (lives === 3) ctx.drawImage(heart, 700, 8, 50, 50);
+
 }
 
 function randomStartPos() {
@@ -144,9 +151,9 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  handleFuel();
   handleAsteroids();
-  fuelText();
+  handleFuel();
+  playerInfo();
   collisionDetection();
   requestAnimationFrame(animate);
   if (elevation > 0) frame++;
@@ -154,6 +161,7 @@ function animate() {
   fuelDisplayed.innerText = fuel;
   livesDisplayed.innerText = lives;
 }
+animate();
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
