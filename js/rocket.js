@@ -90,7 +90,6 @@ class Rocket {
       timer = 140;
       collision = false;
     }
-    console.log(timer);
   }
 
   draw() {

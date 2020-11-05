@@ -86,29 +86,43 @@ function asteroidHit(array) {
         array[i].x + array[i].width > rocket.x &&
         array[i].y < rocket.y + rocket.width &&
         array[i].y + array[i].width > rocket.y
-        ) {
-          collision = true;
-          return true;
-        }
-      }
-    }
-  }
-  
-  function fuelHit(array) {
-    if (!fuelCollected && !collision) {
-      for (let i = 0; i < array.length; i++) {
-        if (
-          array[i].x < rocket.x + rocket.width &&
-          array[i].x + array[i].width > rocket.x &&
-          array[i].y < rocket.y + rocket.width &&
-          array[i].y + array[i].width > rocket.y
-          ) {
-            array.splice(i, 1);
-            fuelCollected = true;
+      ) {
+        collision = true;
         return true;
       }
     }
   }
+}
+
+function fuelHit(array) {
+  if (!fuelCollected && !collision) {
+    for (let i = 0; i < array.length; i++) {
+      if (
+        array[i].x < rocket.x + rocket.width &&
+        array[i].x + array[i].width > rocket.x &&
+        array[i].y < rocket.y + rocket.width &&
+        array[i].y + array[i].width > rocket.y
+      ) {
+        array.splice(i, 1);
+        fuelCollected = true;
+        return true;
+      }
+    }
+  }
+}
+
+function fuelText() {
+  ctx.save();
+  ctx.font = "30px VT323";
+  ctx.fillStyle = "red"
+  ctx.fillRect(870, 40, 100, 10);
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = "yellow"
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(870, 40, fuel / 10, 10);
+  ctx.fillText(`FUEL: ${fuel}`, 867, 30);
+  
+  ctx.restore();
 }
 
 function randomStartPos() {
@@ -131,11 +145,11 @@ function animate() {
   rocket.update();
   rocket.draw();
   handleFuel();
-  // ctx.drawImage(fuelTank, 300, 300, 80, 80);
   handleAsteroids();
+  fuelText();
   collisionDetection();
   requestAnimationFrame(animate);
-  if (elevation > 20) frame++;
+  if (elevation > 0) frame++;
   elevationDisplayed.innerText = elevation * 5;
   fuelDisplayed.innerText = fuel;
   livesDisplayed.innerText = lives;
