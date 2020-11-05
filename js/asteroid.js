@@ -4,7 +4,7 @@ let smallAsteroidRate = 200;
 let bigAsteroidRate = 400; //change this in the handleAsteroids function
 
 const asteroidSmall = new Image();
-asteroidSmall.src = "img/meteor.png";
+asteroidSmall.src = "img/meteor1.png";
 
 class Asteroid {
   constructor() {
@@ -49,6 +49,7 @@ function handleAsteroids() {
   if (elevation > 210) {
     //small asteroids
     if (frame % smallAsteroidRate === 0) {
+      asteroidSmall.src = `img/meteor${Math.ceil(Math.random() * 4)}.png`;
       asteroidArray.unshift(new Asteroid());
     }
     for (let i = 0; i < asteroidArray.length; i++) {
