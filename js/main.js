@@ -1,5 +1,4 @@
 //DOM Elements
-const fuelDisplayed = document.getElementById("fuel-level");
 const elevationDisplayed = document.getElementById("elevation");
 const livesDisplayed = document.getElementById("lives");
 //calibrate canvas
@@ -23,10 +22,11 @@ let fuel = 1000;
 let bgScroll = 0;
 let angle = 0; // wobble add to rocket
 let frame = 0; // add any periodic triggers to the game
-let elevation = 0;
+let elevation = 1;
 let gameSpeed = 2; // to create parallax effect
 let yPos = 0; // Used to set the first two backgrounds
 let yPosR = 0; // Used to set the repeating background
+
 
 //launchStage imgs
 const launchStage = new Image();
@@ -114,6 +114,7 @@ function fuelHit(array) {
 }
 
 function playerInfo() {
+  
   //fuel meter
   ctx.save();
   ctx.font = "30px VT323";
@@ -123,13 +124,34 @@ function playerInfo() {
   ctx.shadowColor = "yellow"
   ctx.fillStyle = "yellow";
   ctx.fillRect(870, 40, fuel / 10, 10);
-  ctx.fillText(`FUEL: ${fuel}`, 867, 30);
+  if (fuel >= 1000) {
+    ctx.fillText(`FUEL: MAX`, 867, 30);
+  } else {
+    ctx.fillText(`FUEL: ${fuel}`, 867, 30);
+  }
   ctx.restore();
   //hearts
   if (lives > 0) ctx.drawImage(heart, 800, 8, 50, 50);
   if (lives > 1) ctx.drawImage(heart, 750, 8, 50, 50);
   if (lives === 3) ctx.drawImage(heart, 700, 8, 50, 50);
+  //elevation bar
+  elevationBar();
+}
 
+function elevationBar() {
+  let color = "royalblue";
+  let maxed = (elevation / 3) % 700;
+  if (maxed === 0) {
+    fuel += 200;
+  }
+  ctx.fillStyle = "white";
+  ctx.save();
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = "cyan"
+  ctx.fillRect(980, 780, 5, -700);
+  ctx.fillStyle = "royalblue";
+  ctx.fillRect(980, 780, 5, -(maxed));
+  ctx.restore();
 }
 
 function randomStartPos() {
@@ -158,8 +180,6 @@ function animate() {
   requestAnimationFrame(animate);
   if (elevation > 0) frame++;
   elevationDisplayed.innerText = elevation * 5;
-  fuelDisplayed.innerText = fuel;
-  livesDisplayed.innerText = lives;
 }
 animate();
 
