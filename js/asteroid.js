@@ -3,6 +3,9 @@ const bigAsteroidArray = [];
 let smallAsteroidRate = 200;
 let bigAsteroidRate = 400; //change this in the handleAsteroids function
 
+const asteroidSmall = new Image();
+asteroidSmall.src = "img/meteor.png";
+
 class Asteroid {
   constructor() {
     this.x = randomStartPos();
@@ -12,10 +15,14 @@ class Asteroid {
   draw() {
     ctx.fillStyle = "chartreuse";
     ctx.fillRect(this.x, this.y, this.width, this.width);
+    ctx.drawImage(asteroidSmall, this.x - 40, this.y - 20, this.width * 2, this.width * 2)
   }
   update() {
     //speed of asteroid effected by boost rate
     this.y += 1 + bgScroll * 0.1;
+    if (this.x < 350) this.x += (Math.random() * .5);
+    if (this.x > 350) this.x -= (Math.random() * .5);
+
     // this.randVel();
     if (elevation > 600) smallAsteroidRate = 100;
     this.draw();

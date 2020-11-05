@@ -18,7 +18,7 @@ let fuelCollected = false;
 let blink;
 let lives = 3;
 let fuelTimer = 100;
-let timer = 180;
+let timer = 140;
 let fuel = 1000;
 let bgScroll = 0;
 let angle = 0; // wobble add to rocket
@@ -57,8 +57,8 @@ function handleBackground() {
     else repeatBG.y1 += bgScroll * 0.2;
     if (repeatBG.y2 >= repeatBG.height) repeatBG.y2 = -repeatBG.height;
     else repeatBG.y2 += bgScroll * 0.2;
-    ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
-    ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
+    ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height + 30);
+    ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height + 30);
   }
 }
 
@@ -89,7 +89,7 @@ function colConditions(array) {
       ) {
         if (array[i].constructor.name === "Fuel") {
           array.pop(array[i]);
-          fuel += 300;
+          fuel += 200;
         };
         
         return true;
@@ -98,9 +98,6 @@ function colConditions(array) {
   }
 }
 
-function blinker() {
-  blink = true;
-}
 
 function randomStartPos() {
   let ranNum = Math.random();
@@ -126,7 +123,7 @@ function animate() {
   collisionDetection();
   requestAnimationFrame(animate);
   if (elevation > 20) frame++;
-  elevationDisplayed.innerText = elevation * 3;
+  elevationDisplayed.innerText = elevation * 5;
   fuelDisplayed.innerText = fuel;
   livesDisplayed.innerText = lives;
 }

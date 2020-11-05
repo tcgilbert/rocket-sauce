@@ -87,7 +87,7 @@ class Rocket {
         }
     }
     if (timer === 0) {
-      timer = 180;
+      timer = 140;
       collision = false;
     }
     console.log(timer);
