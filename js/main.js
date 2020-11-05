@@ -119,6 +119,7 @@ function animate() {
   rocket.update();
   rocket.draw();
   handleFuel();
+  // ctx.drawImage(fuelTank, 300, 300, 80, 80);
   handleAsteroids();
   collisionDetection();
   requestAnimationFrame(animate);

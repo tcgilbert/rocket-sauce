@@ -1,5 +1,8 @@
 const fuelArray = [];
 let fuelRate = 200;
+const fuelTank = new Image();
+fuelTank.src = "img/fuel.png";
+
 
 class Fuel {
     constructor() {
@@ -9,7 +12,9 @@ class Fuel {
     }
     draw() {
       ctx.fillStyle = "red";
-      ctx.fillRect(this.x, this.y, this.width, this.width);
+      // ctx.fillRect(this.x, this.y, this.width, this.width);
+      ctx.drawImage(fuelTank, this.x - 18, this.y -20, this.width * 1.7, this.width * 1.7)
+      
     }
     update() {
       //speed of asteroid effected by boost rate
@@ -33,3 +38,4 @@ function handleFuel() {
         }
     }
 }
+

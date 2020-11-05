@@ -4,6 +4,8 @@ let smallAsteroidRate = 200;
 let bigAsteroidRate = 400; //change this in the handleAsteroids function
 
 const asteroidSmall = new Image();
+const asteroidBig = new Image();
+asteroidBig.src = "img/big-asteroid.png"
 asteroidSmall.src = "img/meteor1.png";
 
 class Asteroid {
@@ -22,7 +24,7 @@ class Asteroid {
     this.y += 1 + bgScroll * 0.1;
     if (this.x < 350) this.x += (Math.random() * 1.5);
     if (this.x > 350) this.x -= (Math.random() * 1.5);
-
+    
     // this.randVel();
     // if (elevation > 600) smallAsteroidRate = 100;
     this.draw();
@@ -37,7 +39,8 @@ class bigAsteroid {
   }
   draw() {
     ctx.fillStyle = "cyan";
-    ctx.fillRect(this.x, this.y, this.width, this.width);
+    // ctx.fillRect(this.x, this.y, this.width, this.width);
+    ctx.drawImage(asteroidBig, this.x - 70, this.y - 70, this.width * 1.7, this.width * 1.7)
   }
   update() {
     this.y += 3;
