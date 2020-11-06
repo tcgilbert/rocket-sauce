@@ -9,6 +9,7 @@ let blasterTimer = 400;
 let upperLimit = 450;
 let boostSpeed = 2;
 let oscMult = 20;
+let scrollLimit = 100;
 
 class Rocket {
   constructor() {
@@ -27,6 +28,7 @@ class Rocket {
   }
   update() {
     this.blaster();
+    console.log(scrollLimit);
     // restoreVars();
     angle += 0.06;
     let osc = Math.sin(angle) * oscMult;
@@ -103,6 +105,8 @@ class Rocket {
         spacePressed = false;
         blasterTimer = 400;
         upperLimit = 450;
+        scrollLimit = 100;
+        bgScroll = 99;
         boostSpeed = 2;
         oscMult = 20;
       }
@@ -159,7 +163,7 @@ class Rocket {
   }
 
   boost() {
-    if (bgScroll < 100) {
+    if (bgScroll < scrollLimit) {
       bgScroll++;
     }
     lrVelocity = 1;
@@ -181,16 +185,21 @@ class Rocket {
   }
   blaster() {
     if (spacePressed) {
+      if (blasterTimer > 100) scrollLimit = 200;
+      else if (scrollLimit != 100) {
+        bgScroll-=5;
+        scrollLimit-=5;
+      }
       if (blasterTimer > 100) {
         upperLimit = 250;
       }
       else if (upperLimit != 450) upperLimit += 2;
       if (blasterTimer > 100) {
-        oscMult = 70;
+        oscMult = 50;
       } else if (oscMult != 20) oscMult--;
       
 
-      boostSpeed = 5;
+      boostSpeed = 3;
       
       console.log(blasterTimer);
       ctx.fillStyle = "cyan";
