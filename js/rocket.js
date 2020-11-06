@@ -5,7 +5,10 @@ fuego1.src = "img/fire.png";
 wizardRocket.src = "img/wizard.png";
 //variables
 let lrVelocity = 0.1;
-let blasterTimer = 300;
+let blasterTimer = 400;
+let upperLimit = 450;
+let boostSpeed = 2;
+let oscMult = 20;
 
 class Rocket {
   constructor() {
@@ -24,11 +27,12 @@ class Rocket {
   }
   update() {
     this.blaster();
+    // restoreVars();
     angle += 0.06;
-    let osc = Math.sin(angle) * 20;
+    let osc = Math.sin(angle) * oscMult;
     //check canvas top
-    if (this.y < 450 + this.height + osc) {
-      this.y = 450 + this.height + osc;
+    if (this.y < upperLimit + this.height + osc) {
+      this.y = upperLimit + this.height + osc;
       this.vy = 0;
     }
     //check canvas BOTTOM, and gravity
@@ -97,7 +101,10 @@ class Rocket {
       blasterTimer--;
       if (blasterTimer === 0) {
         spacePressed = false;
-        blasterTimer = 300;
+        blasterTimer = 400;
+        upperLimit = 450;
+        boostSpeed = 2;
+        oscMult = 20;
       }
     }
 
@@ -157,8 +164,8 @@ class Rocket {
     }
     lrVelocity = 1;
     elevation++;
-    fuel--;
-    this.vy -= 2;
+    if (!spacePressed) fuel--;
+    this.vy -= boostSpeed;
     // console.log(`scroll rate: ${bgScroll}`);
   }
 
@@ -174,6 +181,17 @@ class Rocket {
   }
   blaster() {
     if (spacePressed) {
+      if (blasterTimer > 100) {
+        upperLimit = 250;
+      }
+      else if (upperLimit != 450) upperLimit += 2;
+      if (blasterTimer > 100) {
+        oscMult = 70;
+      } else if (oscMult != 20) oscMult--;
+      
+
+      boostSpeed = 5;
+      
       console.log(blasterTimer);
       ctx.fillStyle = "cyan";
       ctx.fillRect(
@@ -203,4 +221,8 @@ function blasterHitDetection(array) {
       return true;
     }
   }
+}
+
+function restoreVars() {
+  if (upperLimit != 450 & spacePressed == false) upperLimit+= 2;
 }
