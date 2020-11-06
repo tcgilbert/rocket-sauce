@@ -1,6 +1,8 @@
 //image declarations
 const wizardRocket = new Image();
 const fuego1 = new Image();
+const blast1 = new Image();
+blast1.src = "img/wave1.png";
 fuego1.src = "img/fire.png";
 wizardRocket.src = "img/wizard.png";
 //variables
@@ -10,7 +12,7 @@ let upperLimit = 450;
 let boostSpeed = 2;
 let oscMult = 20;
 let scrollLimit = 100;
-let scrollAdder = 1
+let scrollAdder = 1;
 
 class Rocket {
   constructor() {
@@ -114,7 +116,6 @@ class Rocket {
         scoreAdder = 0;
       }
     }
-
   }
 
   draw() {
@@ -133,13 +134,31 @@ class Rocket {
       );
       ctx.restore();
       if (upPressed)
-        ctx.drawImage(
-          fuego1,
-          this.x + 35,
-          this.y + 136,
-          this.fireWidth,
-          this.fireHeight
-        );
+        if (spacePressed) {
+          ctx.save();
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = "red";
+          ctx.drawImage(
+            fuego1,
+            this.x + 35,
+            this.y + 136,
+            this.fireWidth,
+            this.fireHeight
+          );
+          ctx.restore();
+        } else {
+          ctx.save();
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = "red";
+          ctx.drawImage(
+            fuego1,
+            this.x + 35,
+            this.y + 136,
+            this.fireWidth,
+            this.fireHeight
+          );
+          ctx.restore();
+        }
     } else if (!blink) {
       ctx.fillStyle = "red";
       //   ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -192,31 +211,41 @@ class Rocket {
       if (blasterTimer > 100) {
         scrollLimit = 200;
         scrollAdder = 5;
-      }
-      else if (scrollLimit != 100) {
+        scoreAdder = 5;
+        boostSpeed = 2;
+      } else if (scrollLimit != 100) {
         scrollAdder = 1;
-        bgScroll-=5;
-        scrollLimit-=5;
+        bgScroll -= 5;
+        scrollLimit -= 5;
       }
       if (blasterTimer > 100) {
         upperLimit = 250;
-      }
-      else if (upperLimit != 450) upperLimit += 2;
+      } else if (upperLimit != 450) upperLimit += 2;
       if (blasterTimer > 100) {
         oscMult = 70;
       } else if (oscMult != 20) oscMult--;
-      
-      scoreAdder = 5;
-      boostSpeed = 2;
-      
-      console.log(blasterTimer);
-      ctx.fillStyle = "cyan";
+
+      var gradient = ctx.createLinearGradient(
+        this.x - 30,
+        this.y - 400,
+        this.blastWidth,
+        this.blastHeight
+      );
+      gradient.addColorStop(0, "red");
+      gradient.addColorStop(1 / 6, "orange");
+      gradient.addColorStop(2 / 6, "yellow");
+      gradient.addColorStop(3 / 6, "green");
+      gradient.addColorStop(4 / 6, "blue");
+      gradient.addColorStop(5 / 6, "indigo");
+      gradient.addColorStop(1, "violet");
+      ctx.fillStyle = gradient;
       ctx.fillRect(
         this.x - 30,
         this.y - 400,
         this.blastWidth,
         this.blastHeight
       );
+
       blasterHitDetection(asteroidArray);
       blasterHitDetection(bigAsteroidArray);
     }
@@ -230,7 +259,7 @@ function blasterHitDetection(array) {
     if (
       array[i].x < rocket.x - 30 + rocket.blastWidth &&
       array[i].x + array[i].width > rocket.x - 30 &&
-      array[i].y < rocket.y - 400 + rocket.blastHeight&&
+      array[i].y < rocket.y - 400 + rocket.blastHeight &&
       array[i].y + array[i].width > rocket.y - 400
     ) {
       array.splice(i, 1);
@@ -241,5 +270,5 @@ function blasterHitDetection(array) {
 }
 
 function restoreVars() {
-  if (upperLimit != 450 & spacePressed == false) upperLimit+= 2;
+  if ((upperLimit != 450) & (spacePressed == false)) upperLimit += 2;
 }
