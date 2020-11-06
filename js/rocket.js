@@ -5,6 +5,7 @@ fuego1.src = "img/fire.png";
 wizardRocket.src = "img/wizard.png";
 //variables
 let lrVelocity = 0.1;
+let blasterTimer = 300;
 
 class Rocket {
   constructor() {
@@ -81,7 +82,6 @@ class Rocket {
     if (collision) {
       timer--;
     }
-
     if (timer % 15 == 0) {
       if (blink) {
         blink = false;
@@ -93,6 +93,14 @@ class Rocket {
       timer = 140;
       collision = false;
     }
+    if (spacePressed) {
+      blasterTimer--;
+      if (blasterTimer === 0) {
+        spacePressed = false;
+        blasterTimer = 300;
+      }
+    }
+
   }
 
   draw() {
@@ -166,6 +174,7 @@ class Rocket {
   }
   blaster() {
     if (spacePressed) {
+      console.log(blasterTimer);
       ctx.fillStyle = "cyan";
       ctx.fillRect(
         this.x - 30,
