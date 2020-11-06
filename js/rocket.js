@@ -17,9 +17,12 @@ class Rocket {
     this.height = 120;
     this.fireWidth = this.width - 20;
     this.fireHeight = this.height - 40;
+    this.blastWidth = 200;
+    this.blastHeight = 500;
     this.weight = 1;
   }
   update() {
+    this.blaster();
     angle += 0.06;
     let osc = Math.sin(angle) * 20;
     //check canvas top
@@ -137,8 +140,8 @@ class Rocket {
           this.fireWidth,
           this.fireHeight
         );
+    }
   }
-}
 
   boost() {
     if (bgScroll < 100) {
@@ -161,6 +164,33 @@ class Rocket {
     this.vxr += lrVelocity;
     this.x += this.vxr;
   }
+  blaster() {
+    if (spacePressed) {
+      ctx.fillStyle = "cyan";
+      ctx.fillRect(
+        this.x - 30,
+        this.y - 400,
+        this.blastWidth,
+        this.blastHeight
+      );
+      blasterHitDetection(asteroidArray);
+      blasterHitDetection(bigAsteroidArray);
+    }
+  }
 }
 
 const rocket = new Rocket();
+
+function blasterHitDetection(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (
+      array[i].x < rocket.x - 30 + rocket.blastWidth &&
+      array[i].x + array[i].width > rocket.x - 30 &&
+      array[i].y < rocket.y - 400 + rocket.blastHeight&&
+      array[i].y + array[i].width > rocket.y - 400
+    ) {
+      console.log("blast hit!");
+      return true;
+    }
+  }
+}

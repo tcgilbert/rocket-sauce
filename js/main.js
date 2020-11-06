@@ -116,7 +116,6 @@ function fuelHit(array) {
 }
 
 function playerInfo() {
-  
   //fuel meter
   ctx.save();
   ctx.font = "30px VT323";
@@ -149,7 +148,6 @@ function playerInfo() {
 }
 
 function powerBar() {
-  
   let maxed = (elevation / 3) % 700;
   if (maxed === 0) {
     fuel += 200;
@@ -161,8 +159,7 @@ function powerBar() {
   ctx.fillRect(980, 780, 5, -700);
   ctx.fillStyle = "royalblue";
   ctx.fillRect(980, 780, 5, -(maxed));
-  ctx.restore();
-
+  ctx.restore()
   ctx.save()
   ctx.shadowBlur = 10;
   ctx.shadowColor = 'white';
@@ -198,7 +195,7 @@ function animate() {
   if (elevation > 0) frame++;
   elevationDisplayed.innerText = elevation * 5;
 }
-animate();
+// animate();
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
@@ -225,6 +222,14 @@ window.addEventListener("keyup", function (e) {
   if (e.code === "ArrowRight") rightPressed = false;
 });
 
+window.addEventListener("keydown", function (e) {
+  if (e.code === "Space") spacePressed = true;
+});
+
 window.addEventListener("keyup", function (e) {
-  if (e.code === "Space") animate();
+  if (e.code === "Space") spacePressed = false;
+});
+
+window.addEventListener("keyup", function (e) {
+  if (e.code === "ArrowDown") animate();
 });
