@@ -10,6 +10,7 @@ let upperLimit = 450;
 let boostSpeed = 2;
 let oscMult = 20;
 let scrollLimit = 100;
+let scrollAdder = 1
 
 class Rocket {
   constructor() {
@@ -108,7 +109,9 @@ class Rocket {
         scrollLimit = 100;
         bgScroll = 99;
         boostSpeed = 2;
+        scrollAdder = 1;
         oscMult = 20;
+        scoreAdder = 0;
       }
     }
 
@@ -164,10 +167,11 @@ class Rocket {
 
   boost() {
     if (bgScroll < scrollLimit) {
-      bgScroll++;
+      bgScroll += scrollAdder;
     }
     lrVelocity = 1;
     elevation++;
+    score = score + (1 + scoreAdder);
     if (!spacePressed) fuel--;
     this.vy -= boostSpeed;
     // console.log(`scroll rate: ${bgScroll}`);
@@ -185,8 +189,12 @@ class Rocket {
   }
   blaster() {
     if (spacePressed) {
-      if (blasterTimer > 100) scrollLimit = 200;
+      if (blasterTimer > 100) {
+        scrollLimit = 200;
+        scrollAdder = 5;
+      }
       else if (scrollLimit != 100) {
+        scrollAdder = 1;
         bgScroll-=5;
         scrollLimit-=5;
       }
@@ -195,11 +203,11 @@ class Rocket {
       }
       else if (upperLimit != 450) upperLimit += 2;
       if (blasterTimer > 100) {
-        oscMult = 50;
+        oscMult = 70;
       } else if (oscMult != 20) oscMult--;
       
-
-      boostSpeed = 3;
+      scoreAdder = 5;
+      boostSpeed = 2;
       
       console.log(blasterTimer);
       ctx.fillStyle = "cyan";

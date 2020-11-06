@@ -17,6 +17,8 @@ let fuelCollected = false;
 let blink;
 let lives = 3;
 let fuelTimer = 50;
+let scoreAdder = 0;
+let score = 0;
 let timer = 140;
 let fuel = 1000;
 let bgScroll = 0;
@@ -143,7 +145,7 @@ function playerInfo() {
   ctx.shadowBlur = 30;
   ctx.shadowColor = "yellow"
   ctx.fillStyle = "yellow"
-  ctx.fillText(`SCORE: ${elevation - 1} PTS`, 10, 35);
+  ctx.fillText(`SCORE: ${(score)} PTS`, 10, 35);
   ctx.restore();
 }
 
