@@ -14,6 +14,7 @@ let rightPressed = false;
 let spacePressed = false;
 let collision = false;
 let fuelCollected = false;
+let blast = false;
 let blink;
 let lives = 3;
 let fuelTimer = 50;
@@ -191,6 +192,7 @@ function animate() {
   rocket.draw();
   handleAsteroids();
   handleFuel();
+  handleBlaster();
   playerInfo();
   collisionDetection();
   requestAnimationFrame(animate);

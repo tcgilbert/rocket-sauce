@@ -106,6 +106,7 @@ class Rocket {
       blasterTimer--;
       if (blasterTimer === 0) {
         spacePressed = false;
+        blast = false;
         blasterTimer = 400;
         upperLimit = 450;
         scrollLimit = 100;
@@ -208,6 +209,7 @@ class Rocket {
   }
   blaster() {
     if (spacePressed) {
+      blast = true;
       if (blasterTimer > 100) {
         scrollLimit = 200;
         scrollAdder = 5;
@@ -224,27 +226,26 @@ class Rocket {
       if (blasterTimer > 100) {
         oscMult = 70;
       } else if (oscMult != 20) oscMult--;
-
-      var gradient = ctx.createLinearGradient(
-        this.x - 30,
-        this.y - 400,
-        this.blastWidth,
-        this.blastHeight
-      );
-      gradient.addColorStop(0, "red");
-      gradient.addColorStop(1 / 6, "orange");
-      gradient.addColorStop(2 / 6, "yellow");
-      gradient.addColorStop(3 / 6, "green");
-      gradient.addColorStop(4 / 6, "blue");
-      gradient.addColorStop(5 / 6, "indigo");
-      gradient.addColorStop(1, "violet");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(
-        this.x - 30,
-        this.y - 400,
-        this.blastWidth,
-        this.blastHeight
-      );
+      // var gradient = ctx.createLinearGradient(
+      //   this.x - 30,
+      //   this.y - 400,
+      //   this.blastWidth,
+      //   this.blastHeight
+      // );
+      // gradient.addColorStop(0, "red");
+      // gradient.addColorStop(1 / 6, "orange");
+      // gradient.addColorStop(2 / 6, "yellow");
+      // gradient.addColorStop(3 / 6, "green");
+      // gradient.addColorStop(4 / 6, "blue");
+      // gradient.addColorStop(5 / 6, "indigo");
+      // gradient.addColorStop(1, "violet");
+      // ctx.fillStyle = gradient;
+      // ctx.fillRect(
+      //   this.x - 30,
+      //   this.y - 400,
+      //   this.blastWidth,
+      //   this.blastHeight
+      // );
 
       blasterHitDetection(asteroidArray);
       blasterHitDetection(bigAsteroidArray);
