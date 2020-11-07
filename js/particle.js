@@ -8,7 +8,7 @@ class Particle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.size = Math.ceil(Math.random() * 20);
+    this.size = 35;
     this.weight = -50;
     this.directionX = 1;
   }
@@ -17,7 +17,7 @@ class Particle {
     let osc = Math.sin(angle * 2) * 50;
     colors();
     if (this.y < 0) {
-      this.y = rocket.y;
+      this.y = rocket.y - 10;
       this.weight = -25;
     }
     this.x = rocket.x + 50 + osc;
@@ -73,7 +73,7 @@ function connect() {
 function handleBlaster() {
   if (blast) {
     if (frame % 2 === 0) {
-      blasterArray.push(new Particle(350, rocket.y));
+      blasterArray.push(new Particle(350, rocket.y - 20));
     }
     for (let i = 0; i < blasterArray.length; i++) {
       blasterArray[i].update();
