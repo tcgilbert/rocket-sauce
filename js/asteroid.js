@@ -6,6 +6,7 @@ let intervalStarted = false;
 let intervalStarted2 = false;
 let smallAsteroidRate = 500;
 let bigAsteroidRate = 7000; 
+let asteroidRate = .6;
 let rateRandomizer;
 
 const asteroidSmall = new Image();
@@ -36,12 +37,9 @@ class Asteroid {
   }
   update() {
     //speed of asteroid effected by boost rate
-    this.y += 1 + bgScroll * 0.1;
+    this.y += 10;
     if (this.x < 350) this.x += Math.random() * 1.5;
     if (this.x > 350) this.x -= Math.random() * 1.5;
-
-    // this.randVel();
-    // if (elevation > 600) smallAsteroidRate = 100;
     this.draw();
   }
 }
@@ -54,7 +52,6 @@ class bigAsteroid {
   }
   draw() {
     ctx.fillStyle = "cyan";
-    // ctx.fillRect(this.x, this.y, this.width, this.width);
     ctx.save();
     ctx.shadowBlur = 30;
     ctx.shadowColor = "red";
@@ -68,7 +65,7 @@ class bigAsteroid {
     ctx.restore();
   }
   update() {
-    this.y += 3;
+    this.y += 5;
     this.draw();
   }
 }
@@ -83,17 +80,6 @@ function handleAsteroids() {
     }
   }
   if (elevation > 100) {
-    //small asteroids
-    if (!intervalStarted){
-      smallAsteroidInterval = setInterval(spawnAsteroidSmall, smallAsteroidRate);
-      intervalStarted = true;
-    }
-    for (let i = 0; i < asteroidArray.length; i++) {
-      asteroidArray[i].update();
-    }
-    if (asteroidArray.length > 5) {
-      asteroidArray.pop(asteroidArray[0]);
-    }
     //BIG asteroids
     if (!intervalStarted2){
       bigAsteroidInterval = setInterval(spawnAsteroidBig, bigAsteroidRate);
@@ -105,12 +91,24 @@ function handleAsteroids() {
     if (bigAsteroidArray.length > 4) {
       bigAsteroidArray.pop(bigAsteroidArray[0]);
     }
+    
+    //small asteroids
+    if (!intervalStarted){
+      smallAsteroidInterval = setInterval(spawnAsteroidSmall, smallAsteroidRate);
+      intervalStarted = true;
+    }
+    for (let i = 0; i < asteroidArray.length; i++) {
+      asteroidArray[i].update();
+    }
+    if (asteroidArray.length > 5) {
+      asteroidArray.pop(asteroidArray[0]);
+    } 
   }
 }
 
 function spawnAsteroidSmall() {
   rateRandomizer = Math.random();
-  if (rateRandomizer < .3) asteroidArray.unshift(new Asteroid);
+  if (rateRandomizer < asteroidRate) asteroidArray.unshift(new Asteroid);
 }
 
 function spawnAsteroidBig() {

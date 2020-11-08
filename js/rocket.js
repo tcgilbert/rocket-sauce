@@ -175,11 +175,13 @@ class Rocket {
     this.vxr = 0;
     this.vxl -= lrVelocity;
     this.x += this.vxl;
+    if (!upPressed && !spacePressed) fuel -= 0.2;
   }
   moveRight() {
     this.vxl = 0;
     this.vxr += lrVelocity;
     this.x += this.vxr;
+    if (!upPressed && !spacePressed) fuel -= 0.2;
   }
   blaster() {
     if (spacePressed) {

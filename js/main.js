@@ -134,7 +134,7 @@ function playerInfo() {
   if (fuel >= 1000) {
     ctx.fillText(`FUEL: MAX`, 867, 30);
   } else if (fuel > 0) {
-    ctx.fillText(`FUEL: ${fuel}`, 867, 30);
+    ctx.fillText(`FUEL: ${parseInt(fuel)}`, 867, 30);
   } else {
     ctx.fillText(`FUEL: EMPTY`, 855, 30);
   }
