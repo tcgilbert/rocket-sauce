@@ -14,7 +14,7 @@ class Particle {
   }
 
   update() {
-    let osc = Math.sin(angle * 2) * 50;
+    let osc = Math.sin(angle) * 50;
     colors();
     if (this.y < 0) {
       this.y = rocket.y - 10;
@@ -40,7 +40,7 @@ class Particle {
     ctx.beginPath();
     ctx.save();
     ctx.shadowBlur = 10;
-    ctx.shadowColor = `rgba(${red}, ${green}, ${blue})`;
+    ctx.shadowColor = `white`;
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fill();
