@@ -8,7 +8,7 @@ wizardRocket.src = "img/wizard.png";
 //variables
 let lrVelocity = 0.1;
 let blasterTimer = 400;
-let upperLimit = 450;
+let upperLimit = 400;
 let boostSpeed = 2;
 let oscMult = 20;
 let scrollLimit = 100;
@@ -61,6 +61,7 @@ class Rocket {
     } else {
       this.x += this.vxr * 0.5;
     }
+    //left and right movement
     if (!leftPressed && this.vxl < 0) {
       this.vxl += 2;
       if (this.vxl > 0) this.vxl = 0;
@@ -69,7 +70,9 @@ class Rocket {
       this.vxr -= 2;
       if (this.vxr < 0) this.vxr = 0;
     }
+    //limits left and right movement when not boosting
     if (!upPressed && bgScroll > 15) {
+      this.weight = 3;
       lrVelocity = 0.2;
       if (bgScroll > 75) {
         bgScroll--;
@@ -81,7 +84,10 @@ class Rocket {
       if (bgScroll < 15) return;
     }
 
-    if (upPressed) this.boost();
+    if (upPressed) {
+      this.weight = 1;
+      this.boost();
+    }
     if (leftPressed) this.moveLeft();
     if (rightPressed) this.moveRight();
   }

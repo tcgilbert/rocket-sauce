@@ -195,6 +195,7 @@ function randomStartPos() {
 function gameOverMan() {
   if (fuel <= 0 || lives === 0) {
     gameOver = true;
+    clearInterval(smallAsteroidInterval);
     ctx.save();
     ctx.font = "100px VT323";
     ctx.shadowBlur = 30;
@@ -211,6 +212,8 @@ function init() {
   clearInterval(smallAsteroidInterval);
   clearInterval(bigAsteroidInterval);
   rocket.x = 410;
+  intervalStarted = false;
+  intervalStarted2 = false;
   gameStarted = false;
   gameOver = false;
   upPressed = false;
