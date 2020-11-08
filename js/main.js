@@ -209,6 +209,33 @@ function gameOverMan() {
   }
 }
 
+function init() {
+  rocket.x = 410;
+  gameOver = false;
+  upPressed = false;
+  leftPressed = false;
+  rightPressed = false;
+  spacePressed = false;
+  collision = false;
+  fuelCollected = false;
+  blast = false;
+  blink;
+  lives = 3;
+  fuelTimer = 50;
+  scoreAdder = 0;
+  score = 0;
+  timer = 140;
+  fuel = 1000;
+  bgScroll = 0;
+  angle = 0; // wobble add to rocket
+  frame = 0; // add any periodic triggers to the game
+  elevation = 1;
+  gameSpeed = 2; // to create parallax effect
+  yPos = 0; // Used to set the first two backgrounds
+  yPosR = 0; // Used to set the repeating background
+  powerUps = 3;
+}
+
 //game loop
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -263,3 +290,7 @@ window.addEventListener("keydown", function (e) {
 window.addEventListener("keyup", function (e) {
   if (e.code === "ArrowDown") animate();
 });
+
+canvas.addEventListener('click', function (e){
+  if (gameOver) init();
+})
