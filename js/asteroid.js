@@ -81,7 +81,7 @@ function handleAsteroids() {
       bigAsteroidArray.pop();
     }
   }
-  if (elevation > 210) {
+  if (elevation > 100) {
     //small asteroids
     if (!intervalStarted){
       smallAsteroidInterval = setInterval(spawnAsteroidSmall, smallAsteroidRate);

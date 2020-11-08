@@ -240,6 +240,7 @@ function init() {
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   handleBackground();
+  updateParameters();
   rocket.update();
   rocket.draw();
   handleAsteroids();

@@ -61,11 +61,6 @@ class Rocket {
     } else {
       this.x += this.vxr * 0.5;
     }
-
-    if (upPressed) this.boost();
-    if (leftPressed) this.moveLeft();
-    if (rightPressed) this.moveRight();
-
     if (!leftPressed && this.vxl < 0) {
       this.vxl += 2;
       if (this.vxl > 0) this.vxl = 0;
@@ -85,35 +80,10 @@ class Rocket {
       }
       if (bgScroll < 15) return;
     }
-    if (collision) {
-      timer--;
-    }
-    if (timer % 15 == 0) {
-      if (blink) {
-        blink = false;
-      } else {
-        blink = true;
-      }
-    }
-    if (timer === 0) {
-      timer = 140;
-      collision = false;
-    }
-    if (spacePressed) {
-      blasterTimer--;
-      if (blasterTimer === 0) {
-        spacePressed = false;
-        blast = false;
-        blasterTimer = 400;
-        upperLimit = 450;
-        scrollLimit = 100;
-        bgScroll = 99;
-        boostSpeed = 2;
-        scrollAdder = 1;
-        oscMult = 20;
-        scoreAdder = 0;
-      }
-    }
+
+    if (upPressed) this.boost();
+    if (leftPressed) this.moveLeft();
+    if (rightPressed) this.moveRight();
   }
 
   draw() {
@@ -246,3 +216,35 @@ function blasterHitDetection(array) {
   }
 }
 
+function updateParameters() {
+  
+  if (collision) {
+    timer--;
+  }
+  if (timer % 15 == 0) {
+    if (blink) {
+      blink = false;
+    } else {
+      blink = true;
+    }
+  }
+  if (timer === 0) {
+    timer = 140;
+    collision = false;
+  }
+  if (spacePressed) {
+    blasterTimer--;
+    if (blasterTimer === 0) {
+      spacePressed = false;
+      blast = false;
+      blasterTimer = 400;
+      upperLimit = 450;
+      scrollLimit = 100;
+      bgScroll = 99;
+      boostSpeed = 2;
+      scrollAdder = 1;
+      oscMult = 20;
+      scoreAdder = 0;
+    }
+  }
+}
