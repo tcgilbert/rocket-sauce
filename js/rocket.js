@@ -185,21 +185,11 @@ class Rocket {
     if (spacePressed) {
       blast = true;
       if (blasterTimer > 100) {
-        scrollLimit = 150;
-        scrollAdder = 3;
         scoreAdder = 5;
-        boostSpeed = 2;
       } else if (scrollLimit != 100) {
-        scrollAdder = 1;
         bgScroll -= 5;
         scrollLimit -= 5;
       }
-      if (blasterTimer > 100) {
-        upperLimit = 250;
-      } else if (upperLimit != 450) upperLimit += 2;
-      if (blasterTimer > 100) {
-        oscMult = 70;
-      } else if (oscMult != 20) oscMult--;
       blasterHitDetection(asteroidArray);
       blasterHitDetection(bigAsteroidArray);
     }
@@ -244,12 +234,10 @@ function updateParameters() {
       spacePressed = false;
       blast = false;
       blasterTimer = 400;
-      upperLimit = 450;
       scrollLimit = 100;
       bgScroll = 99;
       boostSpeed = 2;
       scrollAdder = 1;
-      oscMult = 20;
       scoreAdder = 0;
     }
   }
