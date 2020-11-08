@@ -4,8 +4,9 @@ let bigAsteroidInterval;
 let smallAsteroidInterval;
 let intervalStarted = false;
 let intervalStarted2 = false;
-let smallAsteroidRate = 1000;
-let bigAsteroidRate = 7000; //change this in the handleAsteroids function
+let smallAsteroidRate = 500;
+let bigAsteroidRate = 7000; 
+let rateRandomizer;
 
 const asteroidSmall = new Image();
 const asteroidBig = new Image();
@@ -108,7 +109,8 @@ function handleAsteroids() {
 }
 
 function spawnAsteroidSmall() {
-  asteroidArray.unshift(new Asteroid);
+  rateRandomizer = Math.random();
+  if (rateRandomizer < .3) asteroidArray.unshift(new Asteroid);
 }
 
 function spawnAsteroidBig() {

@@ -248,6 +248,7 @@ function animate() {
   rocket.draw();
   handleAsteroids();
   handleFuel();
+  console.log(smallAsteroidInterval);
   if (gameStarted) handleBlaster();
   if (gameStarted) collisionDetection();
   if (gameStarted) frame++;
