@@ -238,7 +238,7 @@ window.addEventListener("keyup", function (e) {
 
 window.addEventListener("keydown", function (e) {
   if (e.code === "Space" && powerUps > 0) {
-    powerUps--;
+    if (blasterTimer > 390) powerUps--;
     spacePressed = true;
   }
 });
