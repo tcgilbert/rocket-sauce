@@ -31,7 +31,6 @@ class Rocket {
   }
   update() {
     this.blaster();
-    console.log(scrollLimit);
     angle += 0.06;
     let osc = Math.sin(angle) * oscMult;
     //check canvas top
@@ -184,6 +183,7 @@ class Rocket {
 
   boost() {
     if (!gameOver) {
+      gameStarted = true;
       if (bgScroll < scrollLimit) {
         bgScroll += scrollAdder;
       }
@@ -241,7 +241,6 @@ function blasterHitDetection(array) {
       array[i].y + array[i].width > rocket.y - 400
     ) {
       array.splice(i, 1);
-      console.log("blast hit!");
       return true;
     }
   }

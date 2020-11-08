@@ -8,6 +8,7 @@ canvas.height = 800;
 canvas.width = 1000;
 
 //variables
+let gameStarted = false;
 let gameOver = false;
 let upPressed = false;
 let leftPressed = false;
@@ -74,14 +75,11 @@ function collisionDetection() {
   if (asteroidHit(asteroidArray)) {
     blink = true;
     lives--;
-    // console.log("boom");
   }
   if (asteroidHit(bigAsteroidArray)) {
     lives--;
-    // console.log("big collsion");
   }
   if (fuelHit(fuelArray)) {
-    console.log("fuel added");
     if (fuel >= 800) {
       fuel = 1000;
     } else {
@@ -211,6 +209,7 @@ function gameOverMan() {
 
 function init() {
   rocket.x = 410;
+  gameStarted = false;
   gameOver = false;
   upPressed = false;
   leftPressed = false;
@@ -219,7 +218,6 @@ function init() {
   collision = false;
   fuelCollected = false;
   blast = false;
-  blink;
   lives = 3;
   fuelTimer = 50;
   scoreAdder = 0;
@@ -242,16 +240,14 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  handleAsteroids();
-  handleFuel();
-  handleBlaster();
+  if (gameStarted) handleAsteroids();
+  if (gameStarted) handleFuel();
+  if (gameStarted) handleBlaster();
+  if (gameStarted) collisionDetection();
+  if (gameStarted) frame++;
+  if (gameStarted) gameOverMan();
   playerInfo();
-  console.log(powerUps);
-  collisionDetection();
   requestAnimationFrame(animate);
-  gameOverMan();
-  if (elevation > 0) frame++;
-  elevationDisplayed.innerText = elevation * 5;
 }
 // animate();
 

@@ -5,7 +5,7 @@ let bigAsteroidRate = 400; //change this in the handleAsteroids function
 
 const asteroidSmall = new Image();
 const asteroidBig = new Image();
-asteroidBig.src = "img/big-asteroid.png"
+asteroidBig.src = "img/big-asteroid.png";
 asteroidSmall.src = "img/meteor1.png";
 
 class Asteroid {
@@ -20,15 +20,21 @@ class Asteroid {
     ctx.save();
     ctx.shadowBlur = 30;
     ctx.shadowColor = "red";
-    ctx.drawImage(asteroidSmall, this.x - 40, this.y - 20, this.width * 2, this.width * 2)
+    ctx.drawImage(
+      asteroidSmall,
+      this.x - 40,
+      this.y - 20,
+      this.width * 2,
+      this.width * 2
+    );
     ctx.restore();
   }
   update() {
     //speed of asteroid effected by boost rate
     this.y += 1 + bgScroll * 0.1;
-    if (this.x < 350) this.x += (Math.random() * 1.5);
-    if (this.x > 350) this.x -= (Math.random() * 1.5);
-    
+    if (this.x < 350) this.x += Math.random() * 1.5;
+    if (this.x > 350) this.x -= Math.random() * 1.5;
+
     // this.randVel();
     // if (elevation > 600) smallAsteroidRate = 100;
     this.draw();
@@ -47,7 +53,13 @@ class bigAsteroid {
     ctx.save();
     ctx.shadowBlur = 30;
     ctx.shadowColor = "red";
-    ctx.drawImage(asteroidBig, this.x - 70, this.y - 70, this.width * 1.7, this.width * 1.7)
+    ctx.drawImage(
+      asteroidBig,
+      this.x - 70,
+      this.y - 70,
+      this.width * 1.7,
+      this.width * 1.7
+    );
     ctx.restore();
   }
   update() {
@@ -57,6 +69,14 @@ class bigAsteroid {
 }
 
 function handleAsteroids() {
+  if (!gameStarted) {
+    for (let i = 0; i < asteroidArray.length; i++) {
+      asteroidArray.pop();
+    }
+    for (let i = 0; i < bigAsteroidArray.length; i++) {
+      bigAsteroidArray.pop();
+    }
+  }
   if (elevation > 210) {
     //small asteroids
     if (frame % smallAsteroidRate === 0) {
@@ -64,7 +84,7 @@ function handleAsteroids() {
       asteroidArray.unshift(new Asteroid());
     }
     for (let i = 0; i < asteroidArray.length; i++) {
-        asteroidArray[i].update();
+      asteroidArray[i].update();
     }
     if (asteroidArray.length > 5) {
       asteroidArray.pop(asteroidArray[0]);
@@ -81,5 +101,3 @@ function handleAsteroids() {
     }
   }
 }
-
-
