@@ -132,7 +132,7 @@ class Rocket {
         this.height + 50
       );
       ctx.restore();
-      if (upPressed)
+      if (upPressed && !gameOver)
         if (spacePressed) {
           ctx.save();
           ctx.shadowBlur = 8;
@@ -160,7 +160,6 @@ class Rocket {
         }
     } else if (!blink) {
       ctx.fillStyle = "red";
-      //   ctx.fillRect(this.x, this.y, this.width, this.height);
       ctx.save();
       ctx.shadowBlur = 8;
       ctx.shadowColor = "white";
@@ -172,7 +171,7 @@ class Rocket {
         this.height + 50
       );
       ctx.restore();
-      if (upPressed)
+      if (upPressed && !gameOver)
         ctx.drawImage(
           fuego1,
           this.x + 35,
@@ -184,15 +183,16 @@ class Rocket {
   }
 
   boost() {
-    if (bgScroll < scrollLimit) {
-      bgScroll += scrollAdder;
+    if (!gameOver) {
+      if (bgScroll < scrollLimit) {
+        bgScroll += scrollAdder;
+      }
+      lrVelocity = 1;
+      elevation++;
+      score = score + (1 + scoreAdder);
+      if (!spacePressed) fuel--;
+      this.vy -= boostSpeed;
     }
-    lrVelocity = 1;
-    elevation++;
-    score = score + (1 + scoreAdder);
-    if (!spacePressed) fuel--;
-    this.vy -= boostSpeed;
-    // console.log(`scroll rate: ${bgScroll}`);
   }
 
   moveLeft() {

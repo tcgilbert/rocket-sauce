@@ -32,7 +32,6 @@ let yPos = 0; // Used to set the first two backgrounds
 let yPosR = 0; // Used to set the repeating background
 let powerUps = 3;
 
-
 //launchStage imgs
 const launchStage = new Image();
 const stage2 = new Image();
@@ -92,7 +91,7 @@ function collisionDetection() {
 }
 
 function asteroidHit(array) {
-  if (!collision) {
+  if (!collision && !gameOver) {
     for (let i = 0; i < array.length; i++) {
       if (
         array[i].x < rocket.x + rocket.width &&
@@ -108,7 +107,7 @@ function asteroidHit(array) {
 }
 
 function fuelHit(array) {
-  if (!fuelCollected && !collision) {
+  if (!fuelCollected && !collision && !gameOver) {
     for (let i = 0; i < array.length; i++) {
       if (
         array[i].x < rocket.x + rocket.width &&
@@ -128,18 +127,18 @@ function playerInfo() {
   //fuel meter
   ctx.save();
   ctx.font = "30px VT323";
-  ctx.fillStyle = "red"
+  ctx.fillStyle = "red";
   ctx.fillRect(870, 40, 100, 10);
   ctx.shadowBlur = 30;
-  ctx.shadowColor = "yellow"
+  ctx.shadowColor = "yellow";
   ctx.fillStyle = "yellow";
   ctx.fillRect(870, 40, fuel / 10, 10);
   if (fuel >= 1000) {
     ctx.fillText(`FUEL: MAX`, 867, 30);
-  } else if (fuel > 0){
+  } else if (fuel > 0) {
     ctx.fillText(`FUEL: ${fuel}`, 867, 30);
   } else {
-    ctx.fillText(`FUEL: EMPTY`, 867, 30);
+    ctx.fillText(`FUEL: EMPTY`, 855, 30);
   }
   ctx.restore();
   //hearts
@@ -152,9 +151,9 @@ function playerInfo() {
   ctx.save();
   ctx.font = "30px VT323";
   ctx.shadowBlur = 30;
-  ctx.shadowColor = "yellow"
-  ctx.fillStyle = "yellow"
-  ctx.fillText(`SCORE: ${(score)} PTS`, 10, 35);
+  ctx.shadowColor = "yellow";
+  ctx.fillStyle = "yellow";
+  ctx.fillText(`SCORE: ${score} PTS`, 10, 35);
   ctx.restore();
 }
 
@@ -167,20 +166,19 @@ function powerBar() {
   ctx.fillStyle = "white";
   ctx.save();
   ctx.shadowBlur = 10;
-  ctx.shadowColor = "cyan"
+  ctx.shadowColor = "cyan";
   ctx.fillRect(980, 780, 5, -700);
   ctx.fillStyle = "royalblue";
-  ctx.fillRect(980, 780, 5, -(maxed));
-  ctx.restore()
-
-  ctx.save()
-  for (let i = 0; i < powerUps; i++) {
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = 'white';
-    ctx.drawImage(amp, 890, 90 + (i * 80), 80, 80);
-  }
+  ctx.fillRect(980, 780, 5, -maxed);
   ctx.restore();
 
+  ctx.save();
+  for (let i = 0; i < powerUps; i++) {
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "white";
+    ctx.drawImage(amp, 890, 90 + i * 80, 80, 80);
+  }
+  ctx.restore();
 }
 
 function randomStartPos() {
@@ -199,6 +197,15 @@ function randomStartPos() {
 function gameOverMan() {
   if (fuel <= 0 || lives === 0) {
     gameOver = true;
+    ctx.save();
+    ctx.font = "100px VT323";
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "yellow";
+    ctx.fillStyle = "yellow";
+    ctx.fillText(`GAME OVER`, 310, 350);
+    ctx.font = "20px VT323";
+    ctx.fillText(`(click to restart)`, 425, 380);
+    ctx.restore();
   }
 }
 
