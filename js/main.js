@@ -89,13 +89,14 @@ function collisionDetection() {
 }
 
 function asteroidHit(array) {
-  if (!collision && !gameOver) {
+  if (!collision && !gameOver && !spacePressed) {
     for (let i = 0; i < array.length; i++) {
       if (
         array[i].x < rocket.x + rocket.width &&
         array[i].x + array[i].width > rocket.x &&
         array[i].y < rocket.y + rocket.width &&
-        array[i].y + array[i].width > rocket.y
+        array[i].y + array[i].width > rocket.y &&
+        !array[i].blasted
       ) {
         collision = true;
         return true;
@@ -187,7 +188,7 @@ function randomStartPos() {
     return leftStart;
   } else {
     let rightStart;
-    rightStart = Math.floor(Math.random() * 350) + 330;
+    rightStart = Math.floor(Math.random() * 350) + 350;
     return rightStart;
   }
 }

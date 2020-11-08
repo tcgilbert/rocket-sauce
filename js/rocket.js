@@ -208,7 +208,7 @@ function blasterHitDetection(array) {
       array[i].y < rocket.y - 400 + rocket.blastHeight &&
       array[i].y + array[i].width > rocket.y - 400
     ) {
-      array.splice(i, 1);
+      array[i].blasted = true;
       return true;
     }
   }

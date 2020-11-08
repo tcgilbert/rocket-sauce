@@ -19,21 +19,29 @@ class Asteroid {
     this.x = randomStartPos();
     this.y = -20;
     this.width = 60;
+    this.blasted = false;
   }
   draw() {
-    // ctx.fillStyle = "chartreuse";
-    // ctx.fillRect(this.x, this.y, this.width, this.width);
-    ctx.save();
-    ctx.shadowBlur = 30;
-    ctx.shadowColor = "red";
-    ctx.drawImage(
-      asteroidSmall,
-      this.x - 40,
-      this.y - 20,
-      this.width * 2,
-      this.width * 2
-    );
-    ctx.restore();
+    if (!this.blasted){
+      ctx.save();
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = "red";
+      ctx.drawImage(
+        asteroidSmall,
+        this.x - 40,
+        this.y - 20,
+        this.width * 2,
+        this.width * 2
+      );
+      ctx.restore();
+    } else {
+      ctx.save();
+      ctx.font = "30px VT323";
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = "yellow";
+      ctx.fillText(`+500pts`, this.x - 40, this.y - 20,);
+      ctx.restore();
+    }
   }
   update() {
     //speed of asteroid effected by boost rate
@@ -49,20 +57,30 @@ class bigAsteroid {
     this.x = randomStartPos();
     this.y = -20;
     this.width = 200;
+    this.blasted = false;
   }
   draw() {
-    ctx.fillStyle = "cyan";
-    ctx.save();
-    ctx.shadowBlur = 30;
-    ctx.shadowColor = "red";
-    ctx.drawImage(
-      asteroidBig,
-      this.x - 70,
-      this.y - 70,
-      this.width * 1.7,
-      this.width * 1.7
-    );
-    ctx.restore();
+    if (!this.blasted) {
+      ctx.fillStyle = "cyan";
+      ctx.save();
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = "red";
+      ctx.drawImage(
+        asteroidBig,
+        this.x - 70,
+        this.y - 70,
+        this.width * 1.7,
+        this.width * 1.7
+      );
+      ctx.restore();
+    } else {
+      ctx.save();
+      ctx.font = "50px VT323";
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = "yellow";
+      ctx.fillText(`+1000pts`, this.x - 40, this.y - 20,);
+      ctx.restore();
+    }
   }
   update() {
     this.y += 5;
