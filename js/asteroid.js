@@ -1,7 +1,11 @@
 const asteroidArray = [];
 const bigAsteroidArray = [];
-let smallAsteroidRate = 200;
-let bigAsteroidRate = 400; //change this in the handleAsteroids function
+let bigAsteroidInterval;
+let smallAsteroidInterval;
+let intervalStarted = false;
+let intervalStarted2 = false;
+let smallAsteroidRate = 1000;
+let bigAsteroidRate = 7000; //change this in the handleAsteroids function
 
 const asteroidSmall = new Image();
 const asteroidBig = new Image();
@@ -79,9 +83,9 @@ function handleAsteroids() {
   }
   if (elevation > 210) {
     //small asteroids
-    if (frame % smallAsteroidRate === 0) {
-      asteroidSmall.src = `img/meteor${Math.ceil(Math.random() * 4)}.png`;
-      asteroidArray.unshift(new Asteroid());
+    if (!intervalStarted){
+      smallAsteroidInterval = setInterval(spawnAsteroidSmall, smallAsteroidRate);
+      intervalStarted = true;
     }
     for (let i = 0; i < asteroidArray.length; i++) {
       asteroidArray[i].update();
@@ -90,8 +94,9 @@ function handleAsteroids() {
       asteroidArray.pop(asteroidArray[0]);
     }
     //BIG asteroids
-    if (frame % bigAsteroidRate === 0 && elevation > 1000) {
-      bigAsteroidArray.unshift(new bigAsteroid());
+    if (!intervalStarted2){
+      bigAsteroidInterval = setInterval(spawnAsteroidBig, bigAsteroidRate);
+      intervalStarted2 = true;
     }
     for (let i = 0; i < bigAsteroidArray.length; i++) {
       bigAsteroidArray[i].update();
@@ -100,4 +105,12 @@ function handleAsteroids() {
       bigAsteroidArray.pop(bigAsteroidArray[0]);
     }
   }
+}
+
+function spawnAsteroidSmall() {
+  asteroidArray.unshift(new Asteroid);
+}
+
+function spawnAsteroidBig() {
+  bigAsteroidArray.unshift(new bigAsteroid);
 }

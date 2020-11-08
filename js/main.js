@@ -208,6 +208,8 @@ function gameOverMan() {
 }
 
 function init() {
+  clearInterval(smallAsteroidInterval);
+  clearInterval(bigAsteroidInterval);
   rocket.x = 410;
   gameStarted = false;
   gameOver = false;
