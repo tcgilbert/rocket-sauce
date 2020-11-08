@@ -8,6 +8,7 @@ canvas.height = 800;
 canvas.width = 1000;
 
 //variables
+let gameOver = false;
 let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
@@ -135,8 +136,10 @@ function playerInfo() {
   ctx.fillRect(870, 40, fuel / 10, 10);
   if (fuel >= 1000) {
     ctx.fillText(`FUEL: MAX`, 867, 30);
-  } else {
+  } else if (fuel > 0){
     ctx.fillText(`FUEL: ${fuel}`, 867, 30);
+  } else {
+    ctx.fillText(`FUEL: EMPTY`, 867, 30);
   }
   ctx.restore();
   //hearts
@@ -193,6 +196,12 @@ function randomStartPos() {
   }
 }
 
+function gameOverMan() {
+  if (fuel <= 0 || lives === 0) {
+    gameOver = true;
+  }
+}
+
 //game loop
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -206,6 +215,7 @@ function animate() {
   console.log(powerUps);
   collisionDetection();
   requestAnimationFrame(animate);
+  gameOverMan();
   if (elevation > 0) frame++;
   elevationDisplayed.innerText = elevation * 5;
 }
@@ -213,7 +223,7 @@ function animate() {
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
-  if (e.code === "ArrowUp") upPressed = true;
+  if (e.code === "ArrowUp" && !gameOver) upPressed = true;
 });
 
 window.addEventListener("keyup", function (e) {
@@ -221,7 +231,7 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.code === "ArrowLeft") leftPressed = true;
+  if (e.code === "ArrowLeft" && !gameOver) leftPressed = true;
 });
 
 window.addEventListener("keyup", function (e) {
@@ -229,7 +239,7 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.code === "ArrowRight") rightPressed = true;
+  if (e.code === "ArrowRight" && !gameOver) rightPressed = true;
 });
 
 window.addEventListener("keyup", function (e) {
@@ -237,7 +247,7 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.code === "Space" && powerUps > 0) {
+  if (e.code === "Space" && powerUps > 0 && !gameOver) {
     if (blasterTimer > 390) powerUps--;
     spacePressed = true;
   }
