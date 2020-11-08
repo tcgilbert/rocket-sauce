@@ -193,26 +193,44 @@ class Rocket {
         scrollLimit -= 5;
       }
       blasterHitDetection(asteroidArray);
-      blasterHitDetection(bigAsteroidArray);
+      blasterHitDetection2(bigAsteroidArray);
     }
   }
 }
 
 const rocket = new Rocket();
-
 function blasterHitDetection(array) {
   for (let i = 0; i < array.length; i++) {
     if (
       array[i].x < rocket.x - 30 + rocket.blastWidth &&
       array[i].x + array[i].width > rocket.x - 30 &&
       array[i].y < rocket.y - 400 + rocket.blastHeight &&
-      array[i].y + array[i].width > rocket.y - 400
+      array[i].y + array[i].width > rocket.y - 400 &&
+      !array[i].blasted
     ) {
+      score += 500;
       array[i].blasted = true;
       return true;
     }
   }
 }
+
+function blasterHitDetection2(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (
+      array[i].x < rocket.x - 30 + rocket.blastWidth &&
+      array[i].x + array[i].width > rocket.x - 30 &&
+      array[i].y < rocket.y - 400 + rocket.blastHeight &&
+      array[i].y + array[i].width > rocket.y - 400 &&
+      !array[i].blasted
+    ) {
+      score += 1000;
+      array[i].blasted = true;
+      return true;
+    }
+  }
+}
+
 
 function updateParameters() {
   

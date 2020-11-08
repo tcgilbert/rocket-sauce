@@ -36,7 +36,8 @@ class Asteroid {
       ctx.restore();
     } else {
       ctx.save();
-      ctx.font = "30px VT323";
+      ctx.font = "37px VT323";
+      ctx.fillStyle = "yellow";
       ctx.shadowBlur = 30;
       ctx.shadowColor = "yellow";
       ctx.fillText(`+500pts`, this.x - 40, this.y - 20,);
@@ -75,6 +76,7 @@ class bigAsteroid {
       ctx.restore();
     } else {
       ctx.save();
+      ctx.fillStyle = "yellow";
       ctx.font = "50px VT323";
       ctx.shadowBlur = 30;
       ctx.shadowColor = "yellow";
