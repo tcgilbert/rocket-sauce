@@ -82,7 +82,11 @@ function collisionDetection() {
   }
   if (fuelHit(fuelArray)) {
     console.log("fuel added");
-    fuel += 200;
+    if (fuel >= 800) {
+      fuel = 1000;
+    } else {
+      fuel += 200;
+    }
   }
 }
 
