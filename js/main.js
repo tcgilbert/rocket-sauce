@@ -29,6 +29,7 @@ let elevation = 1;
 let gameSpeed = 2; // to create parallax effect
 let yPos = 0; // Used to set the first two backgrounds
 let yPosR = 0; // Used to set the repeating background
+let powerUps = 3;
 
 
 //launchStage imgs
@@ -154,6 +155,7 @@ function powerBar() {
   let maxed = (elevation / 3) % 700;
   if (maxed === 0) {
     fuel += 200;
+    powerUps++;
   }
   ctx.fillStyle = "white";
   ctx.save();
@@ -163,10 +165,13 @@ function powerBar() {
   ctx.fillStyle = "royalblue";
   ctx.fillRect(980, 780, 5, -(maxed));
   ctx.restore()
+
   ctx.save()
-  ctx.shadowBlur = 10;
-  ctx.shadowColor = 'white';
-  ctx.drawImage(amp, 890, 90, 80, 80);
+  for (let i = 0; i < powerUps; i++) {
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'white';
+    ctx.drawImage(amp, 890, 90 + (i * 80), 80, 80);
+  }
   ctx.restore();
 
 }
@@ -194,6 +199,7 @@ function animate() {
   handleFuel();
   handleBlaster();
   playerInfo();
+  console.log(powerUps);
   collisionDetection();
   requestAnimationFrame(animate);
   if (elevation > 0) frame++;
