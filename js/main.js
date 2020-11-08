@@ -233,7 +233,10 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.code === "Space") spacePressed = true;
+  if (e.code === "Space" && powerUps > 0) {
+    powerUps--;
+    spacePressed = true;
+  }
 });
 
 window.addEventListener("keyup", function (e) {

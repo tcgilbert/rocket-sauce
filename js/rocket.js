@@ -32,7 +32,6 @@ class Rocket {
   update() {
     this.blaster();
     console.log(scrollLimit);
-    // restoreVars();
     angle += 0.06;
     let osc = Math.sin(angle) * oscMult;
     //check canvas top
@@ -86,7 +85,6 @@ class Rocket {
         bgScroll -= 0.25;
       }
       if (bgScroll < 15) return;
-      // console.log(`scroll rate: ${bgScroll}`);
     }
     if (collision) {
       timer--;
@@ -226,27 +224,6 @@ class Rocket {
       if (blasterTimer > 100) {
         oscMult = 70;
       } else if (oscMult != 20) oscMult--;
-      // var gradient = ctx.createLinearGradient(
-      //   this.x - 30,
-      //   this.y - 400,
-      //   this.blastWidth,
-      //   this.blastHeight
-      // );
-      // gradient.addColorStop(0, "red");
-      // gradient.addColorStop(1 / 6, "orange");
-      // gradient.addColorStop(2 / 6, "yellow");
-      // gradient.addColorStop(3 / 6, "green");
-      // gradient.addColorStop(4 / 6, "blue");
-      // gradient.addColorStop(5 / 6, "indigo");
-      // gradient.addColorStop(1, "violet");
-      // ctx.fillStyle = gradient;
-      // ctx.fillRect(
-      //   this.x - 30,
-      //   this.y - 400,
-      //   this.blastWidth,
-      //   this.blastHeight
-      // );
-
       blasterHitDetection(asteroidArray);
       blasterHitDetection(bigAsteroidArray);
     }
@@ -270,6 +247,3 @@ function blasterHitDetection(array) {
   }
 }
 
-function restoreVars() {
-  if ((upperLimit != 450) & (spacePressed == false)) upperLimit += 2;
-}
