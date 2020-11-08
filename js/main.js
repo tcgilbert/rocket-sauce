@@ -240,8 +240,8 @@ function animate() {
   handleBackground();
   rocket.update();
   rocket.draw();
-  if (gameStarted) handleAsteroids();
-  if (gameStarted) handleFuel();
+  handleAsteroids();
+  handleFuel();
   if (gameStarted) handleBlaster();
   if (gameStarted) collisionDetection();
   if (gameStarted) frame++;

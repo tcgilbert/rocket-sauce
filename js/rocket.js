@@ -209,8 +209,8 @@ class Rocket {
     if (spacePressed) {
       blast = true;
       if (blasterTimer > 100) {
-        scrollLimit = 200;
-        scrollAdder = 5;
+        scrollLimit = 150;
+        scrollAdder = 3;
         scoreAdder = 5;
         boostSpeed = 2;
       } else if (scrollLimit != 100) {
