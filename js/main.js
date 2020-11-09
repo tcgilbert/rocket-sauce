@@ -8,6 +8,7 @@ canvas.height = 800;
 canvas.width = 1000;
 
 //variables
+let gameInit = false;
 let gameStarted = false;
 let gameOver = false;
 let upPressed = false;
@@ -253,59 +254,70 @@ function init() {
   powerUps = 3;
 }
 
-function handleAudio() {}
+function handleAudio() {
+  if (!gameStarted) {
+    crowdNoise.play();
+  } else {
+    theme.play();
+  } 
+  if (elevation > 200) {
+    crowdNoise.pause();
+  }
+}
 
 function startScreen() {
-  ctx.drawImage(launchStage, 0, 0, canvas.width, canvas.height);
-  ctx.save();
-  ctx.shadowBlur = 5;
-  ctx.shadowColor = "yellow";
-  ctx.fillStyle = "goldenrod";
-  ctx.fillRect(224, 140, 560, 520);
-  ctx.restore();
-  //background1
-  ctx.fillStyle = "#111";
-  ctx.fillRect(234, 150, 540, 500);
-  ctx.save();
-  //title
-  ctx.font = "100px VT323";
-  ctx.shadowBlur = 13;
-  ctx.shadowColor = "yellow";
-  ctx.fillStyle = "yellow";
-  ctx.fillText(`ROCKET SAUCE`, 265, 230);
-  ctx.font = "20px VT323";
-  //click to start
-  ctx.fillText(`(click to start)`, 440, 630);
-  ctx.restore();
-  //controls
-  ctx.fillStyle = "white";
-  ctx.font = "30px VT323";
-  ctx.fillText(`Press`, 340, 500);
-  ctx.drawImage(keyUp, 425, 480, 30, 30);
-  ctx.fillText(`to boost upward`, 480, 500);
-  ctx.fillText(`Press`, 310, 540);
-  ctx.drawImage(keyLeft, 380, 519, 30, 30);
-  ctx.drawImage(keyRight, 415, 519, 30, 30);
-  ctx.fillText(`to move side to side`, 460, 540);
-  ctx.fillText(`Press`, 330, 580);
-  ctx.drawImage(keySpace, 400, 560, 110, 30);
-  ctx.fillText(`use power-up`, 520, 580);
-  //instructions
-  ctx.fillStyle = "yellow";
-  ctx.font = "19px VT323";
-  ctx.fillText(`"It's a long way to the top if you want to rock n' roll..."`, 280, 260);
-  ctx.fillStyle = "white";
-  ctx.font = "26px VT323";
-  ctx.fillText(`-Collect fuel`, 310, 340);
-  ctx.fillText(`-Avoid Asteroids`, 520, 340);
-  ctx.fillText(`-Fill power-bar by gaining elevation`, 310, 375);
-  ctx.fillText(`to earn power-ups`, 320, 400);
-  //headings
-  ctx.fillStyle = "cyan";
-  ctx.font = "27px VT323";
-  ctx.fillText(`OBJECTIVES`, 440, 305);
-  ctx.fillText(`CONTROLS`, 455, 460);
-  requestAnimationFrame(startScreen);
+  if (!gameInit) {
+    ctx.drawImage(stars, 0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = "yellow";
+    ctx.fillStyle = "goldenrod";
+    ctx.fillRect(224, 140, 560, 520);
+    ctx.restore();
+    //background1
+    ctx.fillStyle = "#111";
+    ctx.fillRect(234, 150, 540, 500);
+    ctx.save();
+    //title
+    ctx.font = "100px VT323";
+    ctx.shadowBlur = 13;
+    ctx.shadowColor = "yellow";
+    ctx.fillStyle = "yellow";
+    ctx.fillText(`ROCKET SAUCE`, 265, 230);
+    ctx.font = "20px VT323";
+    //click to start
+    ctx.fillText(`(click to start)`, 440, 630);
+    ctx.restore();
+    //controls
+    ctx.fillStyle = "white";
+    ctx.font = "30px VT323";
+    ctx.fillText(`Press`, 340, 500);
+    ctx.drawImage(keyUp, 425, 480, 30, 30);
+    ctx.fillText(`to boost upward`, 480, 500);
+    ctx.fillText(`Press`, 310, 540);
+    ctx.drawImage(keyLeft, 380, 519, 30, 30);
+    ctx.drawImage(keyRight, 415, 519, 30, 30);
+    ctx.fillText(`to move side to side`, 460, 540);
+    ctx.fillText(`Press`, 330, 580);
+    ctx.drawImage(keySpace, 400, 560, 110, 30);
+    ctx.fillText(`use power-up`, 520, 580);
+    //instructions
+    ctx.fillStyle = "yellow";
+    ctx.font = "19px VT323";
+    ctx.fillText(`"It's a long way to the top if you want to rock n' roll..."`, 280, 260);
+    ctx.fillStyle = "white";
+    ctx.font = "26px VT323";
+    ctx.fillText(`-Collect fuel`, 310, 340);
+    ctx.fillText(`-Avoid Asteroids`, 520, 340);
+    ctx.fillText(`-Fill power-bar by gaining elevation`, 310, 375);
+    ctx.fillText(`to earn power-ups`, 320, 400);
+    //headings
+    ctx.fillStyle = "cyan";
+    ctx.font = "27px VT323";
+    ctx.fillText(`OBJECTIVES`, 440, 305);
+    ctx.fillText(`CONTROLS`, 455, 460);
+    requestAnimationFrame(startScreen);
+  }
 }
 
 
@@ -324,6 +336,7 @@ function animate() {
   if (gameStarted) frame++;
   if (gameStarted) gameOverMan();
   playerInfo();
+  handleAudio();
   requestAnimationFrame(animate);
 }
 
@@ -371,4 +384,8 @@ window.addEventListener("keyup", function (e) {
 
 canvas.addEventListener("click", function (e) {
   if (gameOver) init();
+  if (!gameInit) {
+    gameInit = true;
+    animate();
+  }
 });
