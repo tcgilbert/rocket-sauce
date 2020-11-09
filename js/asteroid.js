@@ -4,7 +4,7 @@ let bigAsteroidInterval;
 let smallAsteroidInterval;
 let intervalStarted = false;
 let intervalStarted2 = false;
-let smallAsteroidRate = 500;
+let smallAsteroidRate = 400;
 let bigAsteroidRate = 7000;
 let asteroidRate = 0.4;
 let asteroidSpeed = 10;

@@ -241,9 +241,13 @@ function gameOverMan() {
       ctx.fillText(`You ran out of lives...`, 405, 385);
     }
     ctx.restore();
+    ctx.save();
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "cyan";
     ctx.font = "40px VT323";
     ctx.fillStyle = "cyan";
     ctx.fillText(`HI-SCORE: ${score}pts`, 350, 435);
+    ctx.restore();
     ctx.save();
     ctx.font = "20px VT323";
     ctx.fillStyle = "yellow";
