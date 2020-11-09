@@ -342,7 +342,6 @@ function animate() {
   rocket.draw();
   handleAsteroids();
   handleFuel();
-  console.log(smallAsteroidInterval);
   if (gameStarted) handleBlaster();
   if (gameStarted) collisionDetection();
   if (gameStarted) frame++;
@@ -387,12 +386,6 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-window.addEventListener("keyup", function (e) {
-  if (e.code === "ArrowDown") {
-    theme.play();
-    animate();
-  }
-});
 
 canvas.addEventListener("click", function (e) {
   if (gameOver) init();
