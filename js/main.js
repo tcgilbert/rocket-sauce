@@ -8,6 +8,8 @@ canvas.height = 800;
 canvas.width = 1000;
 
 //variables
+let audioStarted = false;
+let audioEnding = false;
 let gameInit = false;
 let gameStarted = false;
 let gameOver = false;
@@ -255,19 +257,23 @@ function init() {
 }
 
 function handleAudio() {
-  if (!gameStarted) {
+  if (!gameStarted && !audioStarted) {
     gameEnding.pause();
     crowdNoise.play();
-  } else if (!gameOver){
+  } else if (!gameOver && !audioStarted){
     theme.play();
+    audioStarted = true;
+    audioEnding = false;
   } 
   if (elevation > 200) {
     crowdNoise.pause();
   }
-  if (gameOver) {
+  if (gameOver && !audioEnding) {
     theme.pause();
     theme.currentTime = 0;
     gameEnding.play();
+    audioEnding = true;
+    audioStarted = false;
   }
 }
 
