@@ -34,6 +34,14 @@ let yPosR = 0; // Used to set the repeating background
 let powerUps = 3;
 
 //launchStage imgs
+const keyUp = new Image();
+keyUp.src = "img/key_up.png";
+const keyLeft = new Image();
+keyLeft.src = "img/key_left.png";
+const keyRight = new Image();
+keyRight.src = "img/key_right.png";
+const keySpace = new Image();
+keySpace.src = "img/space_bar.png";
 const launchStage = new Image();
 const stage2 = new Image();
 const stars = new Image();
@@ -245,8 +253,37 @@ function init() {
   powerUps = 3;
 }
 
-function handleAudio() {
+function handleAudio() {}
 
+function startScreen() {
+  ctx.fillStyle = "#111";
+  ctx.drawImage(launchStage, 0, 0, canvas.width, canvas.height);
+  ctx.fillRect(150, 150, 700, 350);
+  ctx.save();
+  //title
+  ctx.font = "100px VT323";
+  ctx.shadowBlur = 30;
+  ctx.shadowColor = "yellow";
+  ctx.fillStyle = "yellow";
+  ctx.fillText(`ROCKET SAUCE`, 265, 230);
+  ctx.font = "20px VT323";
+  //click to start
+  ctx.fillText(`(click to start)`, 440, 470);
+  ctx.restore();
+  //instructions
+  ctx.fillStyle = "white";
+  ctx.font = "30px VT323";
+  ctx.fillText(`Press`, 200, 300);
+  ctx.drawImage(keyUp, 285, 280, 30, 30);
+  ctx.fillText(`to boost upward`, 340, 300);
+  ctx.fillText(`Press`, 200, 350);
+  ctx.drawImage(keyLeft, 268, 330, 30, 30);
+  ctx.drawImage(keyRight, 303, 330, 30, 30);
+  ctx.fillText(`to move side to side`, 340, 350);
+  ctx.fillText(`Press`, 200, 400);
+  ctx.drawImage(keySpace, 268, 380, 110, 30);
+  ctx.fillText(`use power-up`, 390, 400);
+  requestAnimationFrame(startScreen);
 }
 
 //game loop
@@ -266,7 +303,8 @@ function animate() {
   playerInfo();
   requestAnimationFrame(animate);
 }
-// animate();
+
+startScreen();
 
 //user input event listeners
 window.addEventListener("keydown", function (e) {
@@ -308,6 +346,6 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
-canvas.addEventListener('click', function (e){
+canvas.addEventListener("click", function (e) {
   if (gameOver) init();
-})
+});
