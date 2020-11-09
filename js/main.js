@@ -231,7 +231,7 @@ function gameOverMan() {
     ctx.font = "40px VT323";
     ctx.fillStyle = "cyan";
     ctx.fillText(`HI-SCORE: ${score}pts`, 350, 435);
-    ctx.save()
+    ctx.save();
     ctx.font = "20px VT323";
     ctx.fillStyle = "yellow";
     ctx.shadowBlur = 30;
@@ -276,18 +276,20 @@ function handleAudio() {
   if (!gameStarted && !audioStarted) {
     gameEnding.pause();
     crowdNoise.play();
+    startHum.play();
     gameEnding.currentTime = 0;
-  } else if (!gameOver && !audioStarted){
+  } else if (!gameOver && !audioStarted) {
     theme.play();
     audioStarted = true;
     audioEnding = false;
-  } 
+  }
   if (elevation > 200) {
     crowdNoise.pause();
   }
   if (gameOver && !audioEnding) {
     theme.pause();
     theme.currentTime = 0;
+    startHum.currentTime = 0;
     gameEnding.play();
     audioEnding = true;
     audioStarted = false;
@@ -333,16 +335,22 @@ function startScreen() {
     //instructions
     ctx.fillStyle = "yellow";
     ctx.font = "19px VT323";
-    ctx.fillText(`"It's a long way to the top if you want to rock n' roll..."`, 280, 260);
+    ctx.fillText(
+      `"It's a long way to the top if you want to rock n' roll..."`,
+      280,
+      260
+    );
+    ctx.fillText(`HINT: if fuel is low, use`, 570, 410);
+    ctx.fillText(`power-up to stop fuel burn`, 570, 430);
     ctx.fillStyle = "white";
     ctx.font = "26px VT323";
     ctx.fillText(`-Collect fuel`, 310, 340);
-    ctx.drawImage(fuelTank, 450, 315, 40, 40)
+    ctx.drawImage(fuelTank, 450, 315, 40, 40);
     ctx.fillText(`-Avoid Asteroids`, 520, 340);
-    ctx.drawImage(meteor1, 690, 315, 40, 40)
+    ctx.drawImage(meteor1, 690, 315, 40, 40);
     ctx.fillText(`-Fill power-bar by gaining elevation`, 310, 375);
     ctx.fillText(`to earn power-ups`, 320, 400);
-    ctx.drawImage(amp, 510, 380, 40, 40)
+    ctx.drawImage(amp, 510, 380, 40, 40);
     //headings
     ctx.fillStyle = "cyan";
     ctx.font = "27px VT323";
@@ -350,9 +358,7 @@ function startScreen() {
     ctx.fillText(`CONTROLS`, 455, 460);
     requestAnimationFrame(startScreen);
   }
-  
 }
-
 
 //game loop
 function animate() {
@@ -406,7 +412,6 @@ window.addEventListener("keydown", function (e) {
     spacePressed = true;
   }
 });
-
 
 canvas.addEventListener("click", function (e) {
   if (gameOver) init();
