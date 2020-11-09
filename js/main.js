@@ -74,15 +74,19 @@ function handleBackground() {
 function collisionDetection() {
   if (asteroidHit(asteroidArray)) {
     blink = true;
+    heartloss.play();
     lives--;
   }
   if (asteroidHit(bigAsteroidArray)) {
+    heartloss.play();
     lives--;
   }
   if (fuelHit(fuelArray)) {
     if (fuel >= 800) {
+      fuelAdd.play();
       fuel = 1000;
     } else {
+      fuelAdd.play();
       fuel += 200;
     }
   }
@@ -160,6 +164,7 @@ function powerBar() {
   let maxed = (elevation / 3) % 700;
   if (maxed === 0) {
     fuel += 200;
+    ampAdd.play();
     powerUps++;
   }
   ctx.fillStyle = "white";
@@ -292,7 +297,10 @@ window.addEventListener("keydown", function (e) {
 });
 
 window.addEventListener("keyup", function (e) {
-  if (e.code === "ArrowDown") animate();
+  if (e.code === "ArrowDown") {
+    theme.play();
+    animate();
+  }
 });
 
 canvas.addEventListener('click', function (e){
