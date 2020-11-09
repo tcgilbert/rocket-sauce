@@ -269,7 +269,7 @@ function startScreen() {
   ctx.save();
   //title
   ctx.font = "100px VT323";
-  ctx.shadowBlur = 30;
+  ctx.shadowBlur = 13;
   ctx.shadowColor = "yellow";
   ctx.fillStyle = "yellow";
   ctx.fillText(`ROCKET SAUCE`, 265, 230);
@@ -293,15 +293,21 @@ function startScreen() {
   //instructions
   ctx.fillStyle = "yellow";
   ctx.font = "19px VT323";
-  ctx.fillText(`"It's a long way to the top if you want rock n' roll..."`, 290, 260);
+  ctx.fillText(`"It's a long way to the top if you want to rock n' roll..."`, 280, 260);
   ctx.fillStyle = "white";
   ctx.font = "26px VT323";
   ctx.fillText(`-Collect fuel`, 310, 340);
   ctx.fillText(`-Avoid Asteroids`, 520, 340);
-  ctx.fillText(`-Fill power-bar, by gaining elevation,`, 310, 375);
+  ctx.fillText(`-Fill power-bar by gaining elevation`, 310, 375);
   ctx.fillText(`to earn power-ups`, 320, 400);
+  //headings
+  ctx.fillStyle = "cyan";
+  ctx.font = "27px VT323";
+  ctx.fillText(`OBJECTIVES`, 440, 305);
+  ctx.fillText(`CONTROLS`, 455, 460);
   requestAnimationFrame(startScreen);
 }
+
 
 //game loop
 function animate() {
