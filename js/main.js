@@ -78,8 +78,8 @@ function handleBackground() {
     else repeatBG.y1 += bgScroll * 0.5;
     if (repeatBG.y2 >= repeatBG.height) repeatBG.y2 = -repeatBG.height;
     else repeatBG.y2 += bgScroll * 0.5;
-    ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height + 30);
-    ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height + 30);
+    ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height);
+    ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height);
   }
 }
 
@@ -276,6 +276,7 @@ function handleAudio() {
   if (!gameStarted && !audioStarted) {
     gameEnding.pause();
     crowdNoise.play();
+    gameEnding.currentTime = 0;
   } else if (!gameOver && !audioStarted){
     theme.play();
     audioStarted = true;
@@ -336,9 +337,12 @@ function startScreen() {
     ctx.fillStyle = "white";
     ctx.font = "26px VT323";
     ctx.fillText(`-Collect fuel`, 310, 340);
+    ctx.drawImage(fuelTank, 450, 315, 40, 40)
     ctx.fillText(`-Avoid Asteroids`, 520, 340);
+    ctx.drawImage(meteor1, 690, 315, 40, 40)
     ctx.fillText(`-Fill power-bar by gaining elevation`, 310, 375);
     ctx.fillText(`to earn power-ups`, 320, 400);
+    ctx.drawImage(amp, 510, 380, 40, 40)
     //headings
     ctx.fillStyle = "cyan";
     ctx.font = "27px VT323";
