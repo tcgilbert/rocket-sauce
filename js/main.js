@@ -219,7 +219,7 @@ function randomStartPosBig() {
     case 1: return 200;
     case 2: return 400;
     case 3: return 700; 
-    case 4: return 900;
+    case 4: return 800;
   }
 }
 
@@ -389,7 +389,6 @@ function animate() {
   if (gameStarted) gameOverMan();
   playerInfo();
   handleAudio();
-  console.log(asteroidRate);
   requestAnimationFrame(animate);
 }
 

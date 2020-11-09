@@ -7,6 +7,7 @@ let intervalStarted2 = false;
 let smallAsteroidRate = 500;
 let bigAsteroidRate = 7000;
 let asteroidRate = 0.4;
+let asteroidSpeed = 10;
 let rateRandomizer;
 
 const asteroidBig = new Image();
@@ -53,7 +54,7 @@ class Asteroid {
   }
   update() {
     //speed of asteroid effected by boost rate
-    this.y += 10;
+    this.y += asteroidSpeed;
     if (this.x < 350) this.x += Math.random() * 1.5;
     if (this.x > 350) this.x -= Math.random() * 1.5;
     this.draw();
@@ -98,7 +99,10 @@ class bigAsteroid {
 }
 
 function handleAsteroids() {
-  if ((frame + 1) % 1000 === 0) asteroidRate += .05;
+  if ((frame + 1) % 1000 === 0) {
+    if (asteroidSpeed < 15) asteroidSpeed++;
+    asteroidRate += .05;
+  }
   if (!gameStarted) {
     for (let i = 0; i < asteroidArray.length; i++) {
       asteroidArray.pop();

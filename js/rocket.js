@@ -73,7 +73,7 @@ class Rocket {
     //limits left and right movement when not boosting
     if (!upPressed && bgScroll > 15) {
       this.weight = 3;
-      lrVelocity = 0.2;
+      lrVelocity = 0.1;
       if (bgScroll > 75) {
         bgScroll--;
       } else if (bgScroll > 50) {
