@@ -56,16 +56,16 @@ const repeatBG = {
 //functions
 function handleBackground() {
   if (yPosR === 0) {
-    yPos += bgScroll * 0.2;
+    yPos += bgScroll * 0.5;
     ctx.drawImage(launchStage, 0, yPos, canvas.width, canvas.height);
     ctx.drawImage(stage2, 0, yPos - 800, canvas.width, canvas.height);
     ctx.drawImage(stars, 0, yPos - 1600, canvas.width, canvas.height);
   }
   if (yPos > 1600) {
     if (repeatBG.y1 >= repeatBG.height) repeatBG.y1 = -repeatBG.height;
-    else repeatBG.y1 += bgScroll * 0.2;
+    else repeatBG.y1 += bgScroll * 0.5;
     if (repeatBG.y2 >= repeatBG.height) repeatBG.y2 = -repeatBG.height;
-    else repeatBG.y2 += bgScroll * 0.2;
+    else repeatBG.y2 += bgScroll * 0.5;
     ctx.drawImage(stars, 0, repeatBG.y1, canvas.width, canvas.height + 30);
     ctx.drawImage(stars, 0, repeatBG.y2, canvas.width, canvas.height + 30);
   }
