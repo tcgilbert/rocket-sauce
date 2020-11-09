@@ -8,6 +8,7 @@ canvas.height = 800;
 canvas.width = 1000;
 
 //variables
+let hiScore = 0;
 let audioStarted = false;
 let audioEnding = false;
 let gameInit = false;
@@ -34,7 +35,7 @@ let elevation = 1;
 let gameSpeed = 2; // to create parallax effect
 let yPos = 0; // Used to set the first two backgrounds
 let yPosR = 0; // Used to set the repeating background
-let powerUps = 3;
+let powerUps = 1;
 
 //launchStage imgs
 const keyUp = new Image();
@@ -211,6 +212,7 @@ function randomStartPos() {
 
 function gameOverMan() {
   if (fuel <= 0 || lives === 0) {
+    if (score > hiScore) hiScore = score;
     gameOver = true;
     clearInterval(smallAsteroidInterval);
     ctx.save();
@@ -220,7 +222,21 @@ function gameOverMan() {
     ctx.fillStyle = "yellow";
     ctx.fillText(`GAME OVER`, 310, 350);
     ctx.font = "20px VT323";
-    ctx.fillText(`(click to restart)`, 425, 380);
+    if (fuel <= 0) {
+      ctx.fillText(`You ran out of fuel...`, 405, 385);
+    } else {
+      ctx.fillText(`You ran out of lives...`, 405, 385);
+    }
+    ctx.restore();
+    ctx.font = "40px VT323";
+    ctx.fillStyle = "cyan";
+    ctx.fillText(`HI-SCORE: ${score}pts`, 350, 435);
+    ctx.save()
+    ctx.font = "20px VT323";
+    ctx.fillStyle = "yellow";
+    ctx.shadowBlur = 30;
+    ctx.shadowColor = "yellow";
+    ctx.fillText(`(click to restart)`, 425, 470);
     ctx.restore();
   }
 }
@@ -253,7 +269,7 @@ function init() {
   gameSpeed = 2; // to create parallax effect
   yPos = 0; // Used to set the first two backgrounds
   yPosR = 0; // Used to set the repeating background
-  powerUps = 3;
+  powerUps = 1;
 }
 
 function handleAudio() {
@@ -330,6 +346,7 @@ function startScreen() {
     ctx.fillText(`CONTROLS`, 455, 460);
     requestAnimationFrame(startScreen);
   }
+  
 }
 
 
