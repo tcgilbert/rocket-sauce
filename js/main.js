@@ -256,12 +256,18 @@ function init() {
 
 function handleAudio() {
   if (!gameStarted) {
+    gameEnding.pause();
     crowdNoise.play();
-  } else {
+  } else if (!gameOver){
     theme.play();
   } 
   if (elevation > 200) {
     crowdNoise.pause();
+  }
+  if (gameOver) {
+    theme.pause();
+    theme.currentTime = 0;
+    gameEnding.play();
   }
 }
 

@@ -12,3 +12,5 @@ const heartloss = new Audio();
 heartloss.src = "audio/heart.wav"
 const blastAudio = new Audio();
 blastAudio.src = "audio/blaster.mp3"
+const gameEnding = new Audio();
+gameEnding.src = "audio/game-over.mp3"
