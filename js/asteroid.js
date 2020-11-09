@@ -6,7 +6,7 @@ let intervalStarted = false;
 let intervalStarted2 = false;
 let smallAsteroidRate = 500;
 let bigAsteroidRate = 7000;
-let asteroidRate = 0.6;
+let asteroidRate = 0.4;
 let rateRandomizer;
 
 const asteroidBig = new Image();
@@ -62,7 +62,7 @@ class Asteroid {
 
 class bigAsteroid {
   constructor() {
-    this.x = randomStartPos();
+    this.x = randomStartPosBig();
     this.y = -20;
     this.width = 200;
     this.blasted = false;
@@ -98,6 +98,7 @@ class bigAsteroid {
 }
 
 function handleAsteroids() {
+  if ((frame + 1) % 1000 === 0) asteroidRate += .05;
   if (!gameStarted) {
     for (let i = 0; i < asteroidArray.length; i++) {
       asteroidArray.pop();

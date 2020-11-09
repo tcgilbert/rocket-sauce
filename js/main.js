@@ -198,15 +198,28 @@ function powerBar() {
 }
 
 function randomStartPos() {
-  let ranNum = Math.random();
-  if (ranNum < 0.5) {
-    let leftStart;
-    leftStart = Math.floor(Math.random() * 350);
-    return leftStart;
-  } else {
-    let rightStart;
-    rightStart = Math.floor(Math.random() * 350) + 350;
-    return rightStart;
+  let ranNum = Math.ceil(Math.random() * 10);
+  switch(ranNum) {
+    case 1: return 100;
+    case 2: return 200;
+    case 3: return 300; 
+    case 4: return 400;
+    case 5: return 500; 
+    case 6: return 600;
+    case 7: return 700;
+    case 8: return 800;
+    case 9: return 900;
+    case 10: return 950;
+  }
+}
+
+function randomStartPosBig() {
+  let ranNum = Math.ceil(Math.random() * 4);
+  switch(ranNum) {
+    case 1: return 200;
+    case 2: return 400;
+    case 3: return 700; 
+    case 4: return 900;
   }
 }
 
@@ -257,6 +270,7 @@ function init() {
   fuelCollected = false;
   blast = false;
   lives = 3;
+  asteroidRate = 0.4;
   fuelTimer = 50;
   scoreAdder = 0;
   score = 0;
@@ -375,6 +389,7 @@ function animate() {
   if (gameStarted) gameOverMan();
   playerInfo();
   handleAudio();
+  console.log(asteroidRate);
   requestAnimationFrame(animate);
 }
 
@@ -406,7 +421,7 @@ window.addEventListener("keyup", function (e) {
 });
 
 window.addEventListener("keydown", function (e) {
-  if (e.code === "Space" && powerUps > 0 && !gameOver) {
+  if (e.code === "Space" && powerUps > 0 && !gameOver && gameStarted) {
     if (blasterTimer > 390) powerUps--;
     blastAudio.play();
     spacePressed = true;
