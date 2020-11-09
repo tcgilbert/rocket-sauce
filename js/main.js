@@ -245,6 +245,10 @@ function init() {
   powerUps = 3;
 }
 
+function handleAudio() {
+
+}
+
 //game loop
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -292,6 +296,7 @@ window.addEventListener("keyup", function (e) {
 window.addEventListener("keydown", function (e) {
   if (e.code === "Space" && powerUps > 0 && !gameOver) {
     if (blasterTimer > 390) powerUps--;
+    blastAudio.play();
     spacePressed = true;
   }
 });

@@ -1,8 +1,14 @@
 const theme = new Audio();
 theme.src = "audio/theme.mp3";
+theme.loop = true;
+const crowdNoise = new Audio();
+crowdNoise.src = "audio/crowd.mp3";
+crowdNoise.loop = true;
 const ampAdd = new Audio();
 ampAdd.src = "audio/amp.wav"
 const fuelAdd = new Audio();
 fuelAdd.src = "audio/fuel.wav"
 const heartloss = new Audio();
 heartloss.src = "audio/heart.wav"
+const blastAudio = new Audio();
+blastAudio.src = "audio/blaster.mp3"
