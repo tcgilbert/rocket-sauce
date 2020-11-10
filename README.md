@@ -39,10 +39,11 @@ function handleBackground() {
   }
 }
 ```
+___
 ## 2.) Asteroids and Fuel
 - The biggest challenge I faced with the game obstacles was creating a dynamic spawn rate and spawn location 
 ### Spawn Locations
-- Every obstacle spawned is created above the canvas, with a downward velocity depending on what object it is. All this function does is return a random `x position` whenever an object is created.
+- Every obstacle spawned is created above the canvas. Also each object has a downward velocity depending on its type. All this function does is return a random `x position` whenever an object is created.
 ```javascript
 function randomStartPos() {
   let ranNum = Math.ceil(Math.random() * 10);
@@ -65,6 +66,7 @@ function randomStartPos() {
     - handleFuel()
         - Becuase the rate at which a fuel object is generated is constant, the logic behind coding this was straight-forward
         - The function is called within the game-loop and if the condition is met, a fuel object is created
+        - Here I use the amount of frames that have gone by with the modulo operator 
 ```javascript
 if (frame % fuelRate === 0) {
       fuelArray.unshift(new Fuel());
@@ -79,14 +81,18 @@ if (!intervalStarted) {
       intervalStarted = true;
 ```
  - Again because `handleAsteroids()` ran in the game loop I had to use a boolean flag, in order to make sure that the interval was only created once
-
-## 2.) The power-up blaster
-### This thing...
+___
+## 3.) The power-up blaster
 <div>
 <img src="img/blasterr.png" width="400" height="400" />
 </div>
 
 - While not the prettiest particle animation you'll see, I am proud of the way this came out. The particles, or circles in this case, are generated in the same way as the fuel object, just at a much faster rate.
-- Upon collision the `blasted` property of an asteroid is set to true which changes the draw method of the asteroid class to draw a score, as well as turn off any collision detection 
-
-## Major Takeawways
+- Upon collision with an asteroid, the `blasted` property of the asteroid is set to true which changes the draw method of the asteroid class to draw `"+Xpts"`, as well as turn off collision detection for that object. 
+___
+# Major Takeaways
+## Organization is everything
+- There were a few points in the coding process where I would finally get something to work only to realize that I had made quite the mess in my scripts. Eventually I adopted the strategy of working in a seperate folder for major problem solving; allowing me to refine my ideas before implementing them. 
+- Although I think my project files and code structure could be a little more organized, I have a good feeling that the next project I take on will be far more streamlined. This project was more than just building a game, it was also an opportunity to establish a work flow. 
+## Creativity in Coding
+- Being that the requirements for this project were so open-ended, there was a lot of room for creativity. I found that I was spending almost just as much time in Photoshop as I was in VScode. This creative aspect really highlighted the distinction between code for functionality, and code for user experience. Although I really enjoyed the creative aspect, and had a lot of fun with it, I was definitely burning the candle at both ends. It makes a lot more sense to me now as to why there are different job roles for each aspect: UI/UX designer, and software engineer. 
