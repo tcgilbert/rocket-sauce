@@ -41,7 +41,7 @@ function handleBackground() {
 ```
 ___
 ## 2.) Asteroids and Fuel
-- The biggest challenge I faced with the game obstacles was creating a dynamic spawn rate and spawn location.
+- The biggest challenge I faced with the game obstacles was creating dynamic spawn rates and locations optimal for gameplay.
 ### Spawn Locations
 - Every obstacle spawned is created above the canvas, and each object has a unique downward velocity depending on its type. All this function does is return a random `x position` whenever an object is created.
 - Because the canvas is 1000px wide I choose to create 10 different spawn locations to cover the whole canvas.
