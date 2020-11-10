@@ -11,14 +11,14 @@ ___
 ## Key Elements
 ___
 ## 1.) The illusion of upward movement
-- Because the meat of this game is a square box moving from side to side on the lower fourth of the canvas, it was really important to create a feeling of upward mobility
+- Because the meat of this game is a square box moving from side to side on the lower fourth of the canvas, it was really important to create a feeling of upward mobility.
 - This was accomplished in two ways
     1. Scrolling background
     2. Oscillating upper limit on rocket
 ### Scrolling Background
 - There are two conditions in my handle background function
     - The first condition handles the first three background images, while the second condition handles the repeated background when the rocket is "in space."
-    - The repeat is accomplished by drawing two images at the same time: one hidden and one the user sees. Once the visible image leaves the canvas its `y coordinate` is set to image's negative height value 
+    - The repeat is accomplished by drawing two images at the same time: one hidden and one the user sees. Once the visible image leaves the canvas its `y coordinate` is set to image's negative height value. 
     
         - `repeatBG.y1 = -repeatBG.height;`
 ``` javascript
@@ -41,9 +41,10 @@ function handleBackground() {
 ```
 ___
 ## 2.) Asteroids and Fuel
-- The biggest challenge I faced with the game obstacles was creating a dynamic spawn rate and spawn location 
+- The biggest challenge I faced with the game obstacles was creating a dynamic spawn rate and spawn location.
 ### Spawn Locations
-- Every obstacle spawned is created above the canvas. Also each object has a downward velocity depending on its type. All this function does is return a random `x position` whenever an object is created.
+- Every obstacle spawned is created above the canvas, and each object has a unique downward velocity depending on its type. All this function does is return a random `x position` whenever an object is created.
+- Because the canvas is 1000px wide I choose to create 10 different spawn locations to cover the whole canvas.
 ```javascript
 function randomStartPos() {
   let ranNum = Math.ceil(Math.random() * 10);
@@ -64,23 +65,23 @@ function randomStartPos() {
 ### Spawn Rates
 - The rate at which objects appeared was determined in their respective handler functions
     - handleFuel()
-        - Becuase the rate at which a fuel object is generated is constant, the logic behind coding this was straight-forward
-        - The function is called within the game-loop and if the condition is met, a fuel object is created
-        - Here I use the amount of frames that have gone by with the modulo operator 
+        - Becuase the rate at which a fuel object is generated is constant, the logic behind coding this was straight-forward.
+        - The function is called within the game-loop and if the condition is met, a fuel object is created.
+        - Here I use the amount of frames that have gone by with the modulo operator. 
 ```javascript
 if (frame % fuelRate === 0) {
       fuelArray.unshift(new Fuel());
     }
 ```
  - handleAsteroids()
-    - Because I wanted the rate at which asteroids are generated to be dynamic, I had to take a different approach that allowed for more control
-    - I tried a few different approaches, but eventually I settled on creating an setInterval() function so I could increase the rate at which asteroids are generated as the game goes on
+    - Because I wanted the rate at which asteroids are generated to be dynamic, I had to take a different approach that allowed for more control.
+    - I tried a few different approaches, but eventually I settled on creating a setInterval() function so I could increase the rate at which asteroids are generated as the game goes on.
 ```javascript
 if (!intervalStarted) {
       smallAsteroidInterval = setInterval(spawnAsteroidSmall, smallAsteroidRate);
       intervalStarted = true;
 ```
- - Again because `handleAsteroids()` ran in the game loop I had to use a boolean flag, in order to make sure that the interval was only created once
+ - Again because `handleAsteroids()` ran in the game loop I had to use a boolean flag, in order to make sure that the interval was only created once: this was a technique used a lot throughout this project.
 ___
 ## 3.) The power-up blaster
 <div>
