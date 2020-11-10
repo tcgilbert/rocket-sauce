@@ -346,7 +346,7 @@ function startScreen() {
     ctx.fillText(`to move side to side`, 460, 540);
     ctx.fillText(`Press`, 330, 580);
     ctx.drawImage(keySpace, 400, 560, 110, 30);
-    ctx.fillText(`use power-up`, 520, 580);
+    ctx.fillText(`to use power-up`, 520, 580);
     //instructions
     ctx.fillStyle = "yellow";
     ctx.font = "19px VT323";
