@@ -48,28 +48,6 @@ class Particle {
   }
 }
 
-function connect() {
-  let opacityValue = 1;
-  for (let a = 0; a < blasterArray.length; a++) {
-    for (let b = a; b < blasterArray.length; b++) {
-      let distance =
-        (blasterArray[a].x - blasterArray[b].x) *
-          (blasterArray[a].x - blasterArray[b].x) +
-        (blasterArray[a].y - blasterArray[b].y) *
-          (blasterArray[a].y - blasterArray[b].y);
-
-      opacityValue = 1 - distance / 5000;
-      ctx.strokeStyle = `rgba(${red}, ${green}, ${blue}, ${opacityValue})`;
-
-      ctx.beginPath();
-      ctx.lineWidth = 1;
-      ctx.moveTo(blasterArray[a].x, blasterArray[a].y);
-      ctx.lineTo(blasterArray[b].x, blasterArray[b].y);
-      ctx.stroke();
-    }
-  }
-}
-
 function handleBlaster() {
   if (blast) {
     if (frame % 2 === 0) {

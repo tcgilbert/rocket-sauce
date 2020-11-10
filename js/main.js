@@ -1,6 +1,3 @@
-//DOM Elements
-const elevationDisplayed = document.getElementById("elevation");
-const livesDisplayed = document.getElementById("lives");
 //calibrate canvas
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
