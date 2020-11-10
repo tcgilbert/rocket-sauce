@@ -243,7 +243,7 @@ function gameOverMan() {
     ctx.shadowColor = "cyan";
     ctx.font = "40px VT323";
     ctx.fillStyle = "cyan";
-    ctx.fillText(`HI-SCORE: ${score}pts`, 350, 435);
+    ctx.fillText(`HI-SCORE: ${hiScore}pts`, 350, 435);
     ctx.restore();
     ctx.save();
     ctx.font = "20px VT323";
