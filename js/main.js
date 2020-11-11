@@ -59,7 +59,7 @@ const repeatBG = {
   y1: 0,
   y2: canvas.height,
   width: canvas.width,
-  height: canvas.height,
+  height: canvas.height - 50,
 };
 
 //functions
