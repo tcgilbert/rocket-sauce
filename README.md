@@ -97,12 +97,7 @@ ___
 <img src="img/blasterr.png" width="400" height="400" />
 </div>
 
-- While not the prettiest particle animation you'll see, I am proud of the way this came out. The particles, or circles in this case, are generated in the same way as the fuel object, just at a much faster rate.
+- While not the prettiest particle animation you'll see, I am proud of the way this came out. The particles, or circles in this case, are generated in the same way as the fuel objects, just at a much faster rate.
 - Upon collision with an asteroid, the `blasted` property of the asteroid is set to true which changes the draw method of the asteroid class to draw `"+Xpts"`, as well as turn off collision detection for that object. 
-___
-# Major Takeaways
-## Organization is everything
-- There were a few points in the coding process where I would finally get something to work only to realize that I had made quite the mess in my scripts. Eventually I adopted the strategy of working in a seperate folder for major problem solving; allowing me to refine my ideas before implementing them. 
-- Although I think my project files and code structure could be a little more organized, I have a good feeling that the next project I take on will be far more streamlined. This project was more than just building a game, it was also an opportunity to establish a work flow. 
-## Creativity in Coding
-- Being that the requirements for this project were so open-ended, there was a lot of room for creativity. I found that I was spending almost just as much time in Photoshop as I was in VScode. This creative aspect really highlighted the distinction between code for functionality, and code for user experience. Although I really enjoyed the creative aspect, and had a lot of fun with it, I was definitely burning the candle at both ends. It makes a lot more sense to me now as to why there are different job roles for each aspect: UI/UX designer, and software engineer. 
+
+
