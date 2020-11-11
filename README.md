@@ -1,11 +1,21 @@
-# Rocket-Sauce: the game
+# Rocket-Sauce
 
 ## Overview
-Here lies my very first web-game project that was completely of my own making. I wanted to create a game that hit that "goldie locks" level of not too diffcult, but also still an appropriate challenge. I am happy to report this game provided just that. As you can see by looking at the initial sketch, the concept is quite simple: Fly a rocket as high as you can, avoid asteroids along the way, and collect fuel to keep going. 
+Here lies my first original web-game project: ROCKET SAUCE! I wanted to spend most of my time having fun with the creative side of the project, so I chose a game concept that I knew I could get up and running fairly quick. As you can see by looking at the original mock-up, the concept is quite simple: fly the rocket as high as you can, avoid asteroids, and collect fuel along the way to keep going. This project hit that ideal "goldie-locks" level of not to difficult, but also just enough of a challenge for me too learn new things, and also have a lot of fun with it. 
 ___
-### Mock-up to Finished Look
+### Mock-up vs. Finished Look
 ![mock-up](img/readme-pic.png)
 
+## How to play
+- Click the link! --> <a href="https://tcgilbert.github.io/">Rocket Sauce - PLAY NOW</a>
+- Or, fork and clone this repository and open the `index.html` file or use a Live Server plug-in
+
+## Languages and Tools
+- Vanilla Javascript
+- HTML5 Canvas
+- CSS
+- Adobe Photoshop
+___
 
 ## Key Elements
 ___
