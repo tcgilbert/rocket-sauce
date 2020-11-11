@@ -3,10 +3,9 @@
 ## Overview
 Here lies my very first web-game project that was completely of my own making. I wanted to create a game that hit that "goldie locks" level of not too diffcult, but also still an appropriate challenge. I am happy to report this game provided just that. As you can see by looking at the initial sketch, the concept is quite simple: Fly a rocket as high as you can, avoid asteroids along the way, and collect fuel to keep going. 
 ___
-### Original Mock-up: where I started...
-![mock-up](img/project-1_mockup.png)
-### Completed Project: where I ended up...
-![mock-up](img/finished-look.png)
+### Mock-up to Finished Look
+![mock-up](img/readme-pic.png)
+
 
 ## Key Elements
 ___
