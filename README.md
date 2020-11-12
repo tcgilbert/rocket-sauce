@@ -7,7 +7,7 @@ ___
 ![mock-up](img/readme-pic.png)
 
 ## How to play
-- Click the link! --> <a href="https://tcgilbert.github.io/">Rocket Sauce - PLAY NOW</a>
+- Click the link! --> <a href="https://tcgilbert.github.io/rocket-sauce/">Rocket Sauce - PLAY NOW</a>
 - Or, fork and clone this repository and open the `index.html` file or use a Live Server plug-in
 
 ## Languages and Tools
